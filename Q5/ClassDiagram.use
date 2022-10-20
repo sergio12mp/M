@@ -51,4 +51,3 @@ association Marido between
     Marriage [0..*] role wife
 end
 
-constraints
