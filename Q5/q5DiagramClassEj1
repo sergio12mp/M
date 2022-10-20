@@ -1,0 +1,110 @@
+model Ejercicio1
+--------------------------
+enum RolEmpresa {directos, trabajadorBase,gerente}
+
+-----Clases-----
+class Person
+attributes
+    birthYear:Integer
+    deathYear:Integer
+    age:Integer
+    /isDead:Boolean
+end
+
+class Marriage
+attributes
+    startYear:Integer
+    endYear:Integer
+end
+
+class Clock
+attributes
+    NOW:Integer
+end
+
+class Community
+end
+
+-----Clases de Asociación-------
+
+-----Agregacion----
+
+aggregation IsCommunity between
+    Community[0..*] role community
+    Clock[0..*] role clock
+    
+end
+
+
+-----Asociaciones-----
+association CreoTicket between
+    Empresa[0..*] role creador
+    Ticket[1] role creadoPor
+end
+
+
+association PropiedadDe between
+    Empresa[0..*] role propietaria
+    Almacen[0..*] role almacena
+end
+
+
+
+--association AlmacenaProductos between
+--    Producto[0..*] role guardadosEn
+--    Almacen[0..*] role almacena
+--end
+
+--
+
+--association esGerente between
+--    Empleado[0..1]
+--    Gerente[1]
+--end
+--association esTrabajadorBase between
+--    Empleado[0..1]
+--    TrabajadorBase[1..*]
+--end
+--
+--association esEmpleado between
+--    Empleado[0..1]
+--    Persona[0..3]
+--end
+--class Persona < Cliente
+--end
+--
+--class Cliente 
+--end
+--
+--class Empleado <Persona
+--attributes
+--    salario : Real
+--    rol : RolEmpresa
+--end
+
+--association TengoTicket between
+--    Persona[0..*] role propietario
+--    Ticket[1] role ticketDe
+--end
+
+--associationclass ContratoGerente between
+--    Empresa[0..1]
+--    Persona[0..1]
+--attributes
+--    salarioGerente : Real
+--end
+--
+--associationclass ContratoTrabajadorBase between
+--    Empresa[0..1]
+--    Persona[0..1]
+--attributes
+--    salarioTrabajadorBase : Real
+--end
+
+--associationclass Contrato between
+--    Empresa[0..1]
+--    Empleado[0..1]
+--attributes
+--    salario : Real
+--    rol : RolEmpresa
+--end

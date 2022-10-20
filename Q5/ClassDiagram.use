@@ -1,0 +1,54 @@
+model Ejercicio1
+--------------------------
+enum RolEmpresa {directos, trabajadorBase,gerente}
+
+-----Clases-----
+class Person
+attributes
+    birthYear:Integer
+    deathYear:Integer
+    age:Integer
+    isDead:Boolean
+end
+
+class Marriage
+attributes
+    startYear:Integer
+    endYear:Integer
+end
+
+class Clock
+attributes
+    NOW:Integer
+end
+
+class Community
+end
+
+-----Clases de Asociación-------
+
+-----Agregacion----
+
+aggregation IsCommunity between
+    Community[0..*] role community
+    Clock[1] role clock
+    
+end
+
+-----Composicion----
+composition PerteneceAComunidad between
+    Community[1] role community
+    Person[0..*] role person
+end
+-----Asociaciones-----
+
+association Mujer between
+    Person [1] role wife
+    Marriage [0..*] role husband
+end
+association Marido between
+    Person [1] role husband
+    Marriage [0..*] role wife
+end
+
+constraints
