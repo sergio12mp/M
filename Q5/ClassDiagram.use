@@ -1,7 +1,5 @@
-model Ejercicio1
+model Q5
 --------------------------
-enum RolEmpresa {directos, trabajadorBase,gerente}
-
 -----Clases-----
 class Person
 attributes
@@ -20,9 +18,14 @@ end
 class Clock
 attributes
     NOW:Integer
+    started:Boolean
 end
 
 class Community
+attributes:
+    youngAge:Integer
+    adultAge:Integer
+    oldAge:Integer
 end
 
 -----Clases de Asociación-------
@@ -62,3 +65,7 @@ inv NoMorirAntesDeNacer
 context Marriage
 inv NoDivorcioAntesDeCasamiento
     self.startYear<self.endYear
+inv NoDivorcioSiNoEstasCasado
+    self.startYear = null implies self.endYear = null
+
+
