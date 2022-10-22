@@ -62,13 +62,9 @@ context Person
 inv NoMorirAntesDeNacer:
     self.birthYear < self.deathYear
 
-inv NoNacerEnFuturo:
-    self.community.clock.NOW >= self.birthYear
-
-
-inv NoCasadoConUnoMismo:
-    self.husband->forAll(m | m.husband <>self) and self.wife->forAll(m | m.wife <> self)
-
+inv NoMarriageAfterDeath:
+    self.deathYear <> null implies self.husband -> forAll(x | x.endYear <= self.deathYear)
+    and self.wife->forAll(y | y.endYear <= self.deathYear) 
 
 context Marriage
 inv NoDivorcioAntesDeCasamiento:
@@ -80,6 +76,4 @@ inv NoDivorcioSiNoEstasCasado:
 
 
 
-context Clock
-inv SoloUnReloj:
-    Clock.allInstances()->size() <=1
+
