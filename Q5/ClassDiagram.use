@@ -65,8 +65,8 @@ inv NoNacerEnFuturo:
     self.community.clock.NOW >= self.birthYear
 inv NoCasadoConUnoMismo:
     self.husband->forAll(m | m.husband <>self) and self.wife->forAll(m | m.wife <> self)
---duda de si es asi o inversa
-inv Monogamia:
+    --duda de si es asi o inversa
+inv Monogamia
     self.husband->select(m | m.endYear=null)->size() + self.wife->select(w | w.endYear=null)->size() <=1
 inv NoNinosCasados:
     self.age < self.community.youngAge implies self.husband->size() + self.wife->size() = 0
@@ -87,5 +87,7 @@ inv NoMatrimoniosFuturos:
 
 
 
-
-
+context Clock
+inv SoloUnReloj:
+    Clock.allInstances()->size() <=1
+--aa
