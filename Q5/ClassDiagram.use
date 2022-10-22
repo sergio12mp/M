@@ -65,7 +65,7 @@ inv NoNacerEnFuturo:
     self.community.clock.NOW >= self.birthYear
 inv NoCasadoConUnoMismo:
     self.husband->forAll(m | m.husband <>self) and self.wife->forAll(m | m.wife <> self)
-inv Monogamia
+inv Monogamia:
     self.husband->select(m | m.endYear=null)->size() + self.wife->select(w | w.endYear=null)->size() <=1
 
 
