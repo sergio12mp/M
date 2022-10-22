@@ -54,12 +54,18 @@ association Marido between
     Marriage [0..*] role wife
 end
 
+
 -----Constraints----
 constraints
 
 context Person
 inv NoMorirAntesDeNacer:
     self.birthYear < self.deathYear
+<<<<<<< HEAD
+=======
+inv NoNacerEnFuturo:
+    self.community.clock.NOW >= self.birthYear
+>>>>>>> 4d6aead063803a2ca51291679d3106717dd4aafe
 
 context Marriage
 inv NoDivorcioAntesDeCasamiento:
