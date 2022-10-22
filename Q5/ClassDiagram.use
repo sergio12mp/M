@@ -77,6 +77,8 @@ inv NoDivorcioAntesDeCasamiento:
 inv NoDivorcioSiNoEstasCasado:
     self.startYear = null implies self.endYear = null
 
+inv NoMatrimoniosFuturos:
+    self.startYear <= self.wife.community.clock.NOW
 
 
 
