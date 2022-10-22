@@ -69,7 +69,7 @@ inv NoCasadoConUnoMismo:
 inv Monogamia:
     self.husband->select(m | m.endYear=null)->size() + self.wife->select(w | w.endYear=null)->size() <=1
 inv NoNinosCasados:
-    self.age < self.community.youngAge implies self.husband.size() + self.wife->size() = 0
+    self.age < self.community.youngAge implies self.husband->size() + self.wife->size() = 0
 
 inv NoMatrimonioDespuesMorir:
     self.deathYear <> null implies self.husband -> forAll(x | x.endYear <= self.deathYear)

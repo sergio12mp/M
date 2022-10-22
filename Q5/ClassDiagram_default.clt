@@ -12,8 +12,8 @@
     <node id="Clock" sizeCalculated="true" type="Class">
         <name>Clock</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>32.0</x>
-            <y>229.0</y>
+            <x>88.0</x>
+            <y>230.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -46,30 +46,6 @@
         <target>Clock</target>
         <name>IsCommunity</name>
         <properties>
-            <edgeproperty id="IsCommunity::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>7.0</userOffsetX>
-                    <userOffsetY>-28.0</userOffsetY>
-                    <attached>IsCommunity::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="IsCommunity::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>clock</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-3.0</userOffsetX>
-                    <userOffsetY>-30.0</userOffsetY>
-                    <attached>IsCommunity::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="IsCommunity::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
                 <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -105,6 +81,30 @@
                         <related0>IsCommunity::WayPoint::0</related0>
                         <related1>IsCommunity::WayPoint::1</related1>
                     </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="IsCommunity::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>7.0</userOffsetX>
+                    <userOffsetY>-28.0</userOffsetY>
+                    <attached>IsCommunity::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="IsCommunity::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>clock</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>-3.0</userOffsetX>
+                    <userOffsetY>-30.0</userOffsetY>
+                    <attached>IsCommunity::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -146,30 +146,6 @@
         <target>Marriage</target>
         <name>Marido</name>
         <properties>
-            <edgeproperty id="Marido::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>wife</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-10.0</userOffsetX>
-                    <userOffsetY>-1.0</userOffsetY>
-                    <attached>Marido::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="Marido::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>Marido::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="Marido::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>husband</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -208,6 +184,30 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="Marido::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>Marido::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Marido::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>wife</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>-10.0</userOffsetX>
+                    <userOffsetY>-1.0</userOffsetY>
+                    <attached>Marido::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
         </properties>
         <waypoints>
             <edgeproperty id="Marido::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
@@ -238,30 +238,6 @@
         <target>Person</target>
         <name>PerteneceAComunidad</name>
         <properties>
-            <edgeproperty id="PerteneceAComunidad::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>person</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>2.0</userOffsetX>
-                    <userOffsetY>-17.0</userOffsetY>
-                    <attached>PerteneceAComunidad::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="PerteneceAComunidad::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
-                <name>*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>5.0</userOffsetX>
-                    <userOffsetY>8.0</userOffsetY>
-                    <attached>PerteneceAComunidad::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="PerteneceAComunidad::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>community</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -300,6 +276,30 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="PerteneceAComunidad::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
+                <name>*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>5.0</userOffsetX>
+                    <userOffsetY>8.0</userOffsetY>
+                    <attached>PerteneceAComunidad::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="PerteneceAComunidad::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>person</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>2.0</userOffsetX>
+                    <userOffsetY>-17.0</userOffsetY>
+                    <attached>PerteneceAComunidad::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
         </properties>
         <waypoints>
             <edgeproperty id="PerteneceAComunidad::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
@@ -330,6 +330,44 @@
         <target>Marriage</target>
         <name>Mujer</name>
         <properties>
+            <edgeproperty id="Mujer::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>wife</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>44.0</userOffsetX>
+                    <userOffsetY>1.0</userOffsetY>
+                    <attached>Mujer::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Mujer::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>Mujer::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Mujer::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>Mujer</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>Mujer::WayPoint::0</related0>
+                        <related1>Mujer::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="Mujer::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>husband</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -351,44 +389,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="Mujer::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>Mujer::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="Mujer::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>wife</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>44.0</userOffsetX>
-                    <userOffsetY>1.0</userOffsetY>
-                    <attached>Mujer::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="Mujer::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>Mujer</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>Mujer::WayPoint::0</related0>
-                        <related1>Mujer::WayPoint::1</related1>
-                    </related>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
