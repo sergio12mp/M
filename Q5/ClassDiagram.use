@@ -71,16 +71,21 @@ inv Monogamia:
 inv NoNinosCasados:
     self.age < self.community.youngAge implies self.husband.size() + self.wife->size() = 0
 
+inv NoMatrimonioDespuesMorir:
+    self.deathYear <> null implies self.husband -> forAll(x | x.endYear <= self.deathYear)
+    and self.wife->forAll(y | y.endYear <= self.deathYear) 
+
 context Marriage
 inv NoDivorcioAntesDeCasamiento:
     self.startYear<self.endYear
+
 inv NoDivorcioSiNoEstasCasado:
     self.startYear = null implies self.endYear = null
+
 inv NoMatrimoniosFuturos:
     self.startYear <= self.wife.community.clock.NOW
 
 
 
-context Clock
-inv SoloUnReloj:
-    Clock.allInstances()->size() <=1
+
+
