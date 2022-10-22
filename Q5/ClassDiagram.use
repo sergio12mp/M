@@ -51,3 +51,8 @@ association Marido between
     Marriage [0..*] role wife
 end
 
+association Prueba between
+    Person [1] role h
+    Person [1] role w
+end
+
