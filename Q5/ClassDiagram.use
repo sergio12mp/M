@@ -22,7 +22,7 @@ attributes
 end
 
 class Community
-attributes:
+attributes
     youngAge:Integer
     adultAge:Integer
     oldAge:Integer
@@ -58,14 +58,14 @@ end
 constraints
 
 context Person
-inv NoMorirAntesDeNacer
-    self.birthYear<self.deathYear
+inv NoMorirAntesDeNacer:
+    self.birthYear < self.deathYear
 
 
 context Marriage
-inv NoDivorcioAntesDeCasamiento
+inv NoDivorcioAntesDeCasamiento:
     self.startYear<self.endYear
-inv NoDivorcioSiNoEstasCasado
+inv NoDivorcioSiNoEstasCasado:
     self.startYear = null implies self.endYear = null
 
 
