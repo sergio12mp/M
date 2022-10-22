@@ -58,7 +58,8 @@ context Person
 inv NoMorirAntesDeNacer
     self.birthYear<self.deathYear
 
-
 context Marriage
 inv NoDivorcioAntesDeCasamiento
     self.startYear<self.endYear
+
+
