@@ -8,8 +8,24 @@ attributes
     birthYear:Integer
     deathYear:Integer
     age:Integer
+<<<<<<< HEAD
     isDead:Boolean
     causeOfDeath:CauseOfDeath
+=======
+    isDead:Booleanmarried : Boolean init= false
+    stage:Integer
+
+operations
+    isMarried()
+        begin
+            if (self.wife.startYear->size() + self.husband.startYear->size()) > 0 then
+                self.married:=true
+            end;
+        end
+
+
+    --marriges()
+>>>>>>> 20aea6d860b51e621bab17f5cba021479e9d34c1
 end
 
 class Marriage
