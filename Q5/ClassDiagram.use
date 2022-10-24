@@ -12,13 +12,15 @@ attributes
     isDead:Booleanmarried : Boolean init= false
     stage:Integer
 
-operations
-    isMarried()
-        begin
-            if (self.wife.startYear->size() + self.husband.startYear->size()) > 0 then
-                self.married:=true
-            end;
-        end
+    operations
+        isMarried():Boolean
+            begin
+                if (self.wife.startYear->size() + self.husband.startYear->size()) > 0 then
+                    result:=true
+                else 
+                    result:=false 
+                end
+            end
 
 
     --marriges()
