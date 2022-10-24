@@ -1,5 +1,7 @@
 model Q5
 --------------------------
+enum CauseOfDeath {EUTANASIA,SUICIDIO,HOMICIDIO,NATURAL,ACCIDENTE}
+
 -----Clases-----
 class Person
 attributes
@@ -7,6 +9,7 @@ attributes
     deathYear:Integer
     age:Integer
     isDead:Boolean
+    causeOfDeath:CauseOfDeath
 end
 
 class Marriage
@@ -77,6 +80,9 @@ inv NoNinosCasados:
 inv NoMatrimonioDespuesMorir:
     self.deathYear <> null implies self.husband -> forAll(x | x.endYear <= self.deathYear)
     and self.wife->forAll(y | y.endYear <= self.deathYear) 
+
+inv NoEutanasiaNiSuicidio:
+    self.causeOfDeath <> CauseOfDeath::EUTANASIA and self.causeOfDeath <> CauseOfDeath::SUICIDIO
 
 context Marriage
 inv NoDivorcioAntesDeCasamiento:
