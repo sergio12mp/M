@@ -84,7 +84,7 @@ inv NoDivorcioSiNoEstasCasado:
 
 inv NoMatrimoniosFuturos:
     self.startYear <= self.wife.community.clock.NOW
---jhdsfm
+--jhdsfdkfkafm
 
 
 context Clock
