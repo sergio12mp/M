@@ -1,0 +1,20 @@
+reset
+----------
+!new Clock('Reloj1')
+
+!new Person('Pablo')
+!Pablo.birthYear:=2000
+!Pablo.deathYear:=1990
+!new Person('Antonio')
+!Antonio.birthYear:=2001
+!new Person('Sergio')
+!Sergio.birthYear:=2010
+
+!new Marriage('PabloYSergio')
+!PabloYSergio.startYear := 2015
+!PabloYSergio.endYear := 2017  
+
+!insert (Pablo,PabloYSergio) into Mujer
+!insert (Sergio,PabloYSergio) into Marido
+--------------
+check
