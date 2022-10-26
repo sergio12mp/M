@@ -1,0 +1,99 @@
+model ObjectToClassModel
+
+
+class Operario
+attributes
+  Disponible : String
+end
+
+association AsignadoA4000 between
+  Operario[1] role nullRole1Name4000
+  Dispositvo[1] role nullRole2Name4000
+end
+
+association InformaN4002 between
+  CRA[0..1] role nullRole1Name4002
+  Vehiculo[1] role nullRole2Name4002
+end
+
+class Ciudad
+end
+
+class Vehiculo
+end
+
+class Dispositvo
+attributes
+  nAvisosResueltos : String
+end
+
+association TieneMRs4003 between
+  ParqueAtracciones[1] role nullRole1Name4003
+  MontanaRusa[1] role nullRole2Name4003
+end
+
+association BienAnclado4009 between
+  CRA[0..1] role nullRole1Name4009
+  Vehiculo[1] role nullRole2Name4009
+end
+
+class ParqueAtracciones
+end
+
+class Vagon
+end
+
+class CRA
+end
+
+class Noria
+attributes
+  calle : String
+end
+
+association AvisaA4013 between
+  Vagon[1] role nullRole1Name4013
+  CRA[0..1] role nullRole2Name4013
+end
+
+association ComunicaA4006 between
+  Dispositvo[1] role nullRole1Name4006
+  CRA[1] role nullRole2Name4006
+end
+
+association ancladoA4011 between
+  Vagon[1..2] role nullRole1Name4011
+  Vagon[1..2] role nullRole2Name4011
+end
+
+association DetectorNoria4007 between
+  Noria[1] role nullRole1Name4007
+  Vehiculo[2] role nullRole2Name4007
+end
+
+association InformaMR4001 between
+  CRA[0..1] role nullRole1Name4001
+  Vagon[1] role nullRole2Name4001
+end
+
+association TieneNorias4004 between
+  ParqueAtracciones[1] role nullRole1Name4004
+  Noria[1] role nullRole2Name4004
+end
+
+association CirculaEn4010 between
+  Vagon[1] role nullRole1Name4010
+  MontanaRusa[0..1] role nullRole2Name4010
+end
+
+class MontanaRusa
+attributes
+  calle : String
+end
+
+association SeLocalizaEn4005 between
+  Ciudad[1] role nullRole1Name4005
+  ParqueAtracciones[1] role nullRole2Name4005
+end
+
+constraints
