@@ -28,6 +28,10 @@ attributes
             begin
                 result := self.wife -> size() + self.husband -> size()
             end
+        addYear()
+            begin
+                self.age:=self.age+1;
+            end
 end
 
 class Marriage
@@ -38,8 +42,22 @@ end
 
 class Clock
 attributes
-    NOW:Integer
-    started:Boolean
+    NOW:Integer init = 0
+    started:Boolean init false
+operations
+    tick() 
+      begin
+        self.NOW:=self.NOW + 1;
+        for p in self.community.person do
+            if (not p.isDead) then
+                p.addYear()
+            end
+        end    
+      end
+
+     started
+
+
 end
 
 class Community
@@ -89,7 +107,7 @@ inv NoCasadoConUnoMismo:
     self.husband->forAll(m | m.husband <>self) and self.wife->forAll(m | m.wife <> self)
 
 inv Monogamia:
-    self.husband->append(self.wife) -> forAll (m1,m2 | m1<>m2 and m1.startYear < m2.startYear implies m1.endYear < m2.startYear)
+    self.husband->union(self.wife) -> forAll (m1,m2 | m1<>m2 and m1.startYear < m2.startYear implies m1.endYear < m2.startYear)
 
 inv NoNinosCasados:
     self.age < self.community.youngAge implies self.husband->size() + self.wife->size() = 0
