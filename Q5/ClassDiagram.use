@@ -30,8 +30,8 @@ attributes
             end
         addYear()
             begin
-        ---        self.age:=self.age+1;
-        ---    end
+                self.age:=self.age+1;
+            end
         ---pedirMatrimonio(p.Person)
         ---    begin
         ---
