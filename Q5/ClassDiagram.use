@@ -89,7 +89,8 @@ inv NoCasadoConUnoMismo:
     self.husband->forAll(m | m.husband <>self) and self.wife->forAll(m | m.wife <> self)
 
 inv Monogamia:
-    self.husband->append(self.wife) -> forAll (m1,m2 | m1<>m2 and m1.startYear < m2.startYear implies m1.endYear < m2.startYear)
+    self.husband -> forAll (m1,m2 | m1<>m2 and m1.startYear < m2.startYear implies m1.endYear < m2.startYear) and 
+    self.wife -> forAll (m1,m2 | m1<>m2 and m1.startYear < m2.startYear implies m1.endYear < m2.startYear)
 
 inv NoNinosCasados:
     self.age < self.community.youngAge implies self.husband->size() + self.wife->size() = 0
