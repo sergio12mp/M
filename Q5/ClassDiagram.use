@@ -9,7 +9,8 @@ attributes
     deathYear:Integer
     age:Integer
     causeOfDeath:CauseOfDeath
-    isDead:Booleanmarried : Boolean init= false
+    isDead:Boolean
+    married : Boolean init= false
     stage:Integer
 
     operations
@@ -23,7 +24,10 @@ attributes
             end
 
 
-    --marriges()
+        marriages() : Integer
+            begin
+                result := self.wife -> size() + self.husband -> size()
+            end
 end
 
 class Marriage
