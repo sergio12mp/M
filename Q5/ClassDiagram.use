@@ -6,7 +6,7 @@ enum CauseOfDeath {EUTANASIA,SUICIDIO,HOMICIDIO,NATURAL,ACCIDENTE}
 class Person
 attributes
     birthYear:Integer
-    deathYear:Integer
+    deathYear:Integer init = null
     age:Integer
     causeOfDeath:CauseOfDeath
     isDead:Boolean
@@ -103,7 +103,7 @@ constraints
 
 context Person
 inv NoMorirAntesDeNacer:
-    self.birthYear < self.deathYear
+   self.deathYear = null or self.birthYear <= self.deathYear
 
 inv NoNacerEnFuturo:
     self.community.clock.NOW >= self.birthYear
