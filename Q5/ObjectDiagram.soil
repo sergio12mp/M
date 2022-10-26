@@ -2,20 +2,53 @@ reset
 ----------
 !new Clock('Reloj1')
 
+------Personas-------
 !new Person('Pablo')
 !Pablo.birthYear:=2000
-!Pablo.deathYear:=1990
+!Pablo.deathYear:=2018
 !new Person('Antonio')
 !Antonio.birthYear:=2001
+!Antonio.deathYear:=2017
 !Antonio.causeOfDeath:= #HOMICIDIO
 !new Person('Sergio')
 !Sergio.birthYear:=2010
+!new Person('Nacho')
+!Nacho.birthYear:=2000
+!new Person('Carlos')
+!Carlos.birthYear:=2002
+!new Person('Maria')
+!Maria.birthYear:=1999
+!new Person('Irene')
+!Irene.birthYear:=1998
+!new Person('Noelia')
+!Noelia.birthYear:=2003
+!new Person('Susana')
+!Susana-birthYear:=2000
+!new Person('Lana')
+!Isabel.birthYear:=2000
 
-!new Marriage('PabloYSergio')
-!PabloYSergio.startYear := 2015
-!PabloYSergio.endYear := 2017  
+!new Marriage('Matrimonio1')
+!Matrimonio1.startYear := 2015
+!Matrimonio1.endYear := 2017  
+!insert (Pablo,Matrimonio1) into Mujer
+!insert (Sergio,Matrimonio1) into Marido
 
-!insert (Pablo,PabloYSergio) into Mujer
-!insert (Sergio,PabloYSergio) into Marido
+!new Marriage('Matrimonio2')
+!Matrimonio2.startYear := 2014
+!Matrimonio2.endYear := 2016
+!insert (Antonio, Matrimonio2) into Mujer
+!insert (Susana, Matrimonio2) into Marido
+
+!new Marriage('Matrimonio3')
+!Matrimonio3.startYear := 2014
+!Matrimonio3.endYear := 2016
+
+!new Marriage('Matrimonio4')
+!Matrimonio4.startYear := 2014
+!Matrimonio4.endYear := 2016
+
+
+
+
 --------------
 check
