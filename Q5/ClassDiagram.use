@@ -159,10 +159,8 @@ inv NoDivorcioSiNoEstasCasado:
 
 inv NoMatrimoniosFuturos:
     self.startYear <= self.wife.community.clock.NOW
---jhdsfdkfkafm
-
 
 context Clock
 inv SoloUnReloj:
     Clock.allInstances()->size() = 1
---aa
+
