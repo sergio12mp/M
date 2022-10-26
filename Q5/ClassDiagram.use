@@ -59,23 +59,23 @@ end
 class Clock
 attributes
     NOW:Integer init = 2000
-    started:Boolean init false
+    started:Boolean init = false
 operations
     tick() 
       begin
-        self.NOW:=self.NOW + 1
+        self.NOW:=self.NOW + 1;
         for p in self.community.person do
             if (not p.isDead) then
                 p.addYear()
             end
-        end    
+        end;    
       end
-    run(n.Integer)
+    run(n:Integer)
         begin
-            self.started=true
+            self.started:=true;
             for i in Sequence{1..n} do
               self.tick()
-            end 
+            end; 
         end
 
 
@@ -114,13 +114,13 @@ association Marido between
 end
 
 association PedidaMatrimonio between 
-    Person [1] role pretendiente
-    Person [1] role pretendido
+    Person [0..1] role pretendiente
+    Person [0..1] role pretendido
 end
 
 association PedidaDivorcio between 
-    Person [1] role divorciador
-    Person [1] role divorciado
+    Person [0..1] role divorciador
+    Person [0..1] role divorciado
 end
 
 
@@ -141,7 +141,7 @@ inv Monogamia:
     self.husband->union(self.wife) -> forAll (m1,m2 | m1<>m2 and m1.startYear < m2.startYear implies m1.endYear < m2.startYear)
 
 inv NoNinosCasados:
-    self.age < self.community.youngAge implies self.husband->size() + self.wife->size() = 0
+    self.age < self.community.adultAge implies self.husband->size() + self.wife->size() = 0
 
 inv NoMatrimonioDespuesMorir:
     self.deathYear <> null implies self.husband -> forAll(x | x.endYear <= self.deathYear)
