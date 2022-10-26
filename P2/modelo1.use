@@ -1,46 +1,51 @@
 model ObjectToClassModel
 
-
+--Preguntar clase abstracta atraccion
 class Operario
 attributes
-  Disponible : String
+  disponible : Boolean
 end
 
-association AsignadoA4000 between
-  Operario[1] role nullRole1Name4000
-  Dispositvo[1] role nullRole2Name4000
+association AsignadoA between
+  Operario[1] role operario
+  Dispositvo[1] role dispositivo
 end
 
-association InformaN4002 between
-  CRA[0..1] role nullRole1Name4002
-  Vehiculo[1] role nullRole2Name4002
+association InformaNoria between
+  CRA[0..1] role cra
+  Cabina[1] role cabina
 end
 
 class Ciudad
 end
 
-class Vehiculo
+class Cabina
+attributes
+  detectorActivado : Boolean
+
 end
 
 class Dispositvo
 attributes
-  nAvisosResueltos : String
+  nAvisosResueltos : Integer
 end
 
-association TieneMRs4003 between
-  ParqueAtracciones[1] role nullRole1Name4003
-  MontanaRusa[1] role nullRole2Name4003
+association TieneMRs between
+  ParqueAtracciones[1] role parqueAtracciones
+  MontanaRusa[1] role montanarusa
 end
 
-association BienAnclado4009 between
-  CRA[0..1] role nullRole1Name4009
-  Vehiculo[1] role nullRole2Name4009
+association BienAnclado between
+  CRA[0..1] role craNoria
+  Cabina [1] role DetectorNoria
 end
 
 class ParqueAtracciones
 end
 
 class Vagon
+attributes
+  detectorActivado : Boolean
 end
 
 class CRA
@@ -48,52 +53,49 @@ end
 
 class Noria
 attributes
+  error : Boolean
   calle : String
 end
 
-association AvisaA4013 between
-  Vagon[1] role nullRole1Name4013
-  CRA[0..1] role nullRole2Name4013
+association AvisaA between
+  Vagon[1] role vagon
+  CRA[0..1] role cra
 end
 
-association ComunicaA4006 between
-  Dispositvo[1] role nullRole1Name4006
-  CRA[1] role nullRole2Name4006
-end
-
-association ancladoA4011 between
-  Vagon[1..2] role nullRole1Name4011
-  Vagon[1..2] role nullRole2Name4011
-end
-
-association DetectorNoria4007 between
-  Noria[1] role nullRole1Name4007
-  Vehiculo[2] role nullRole2Name4007
-end
-
-association InformaMR4001 between
-  CRA[0..1] role nullRole1Name4001
-  Vagon[1] role nullRole2Name4001
-end
-
-association TieneNorias4004 between
-  ParqueAtracciones[1] role nullRole1Name4004
-  Noria[1] role nullRole2Name4004
-end
-
-association CirculaEn4010 between
-  Vagon[1] role nullRole1Name4010
-  MontanaRusa[0..1] role nullRole2Name4010
-end
-
-class MontanaRusa
+associationclass Mensaje between
+  Dispositvo[1] role dispositivo
+  CRA[1] role cra
 attributes
   calle : String
+  id : Integer 
 end
 
-association SeLocalizaEn4005 between
-  Ciudad[1] role nullRole1Name4005
-  ParqueAtracciones[1] role nullRole2Name4005
+composition ComponeNoria between
+  Noria[1] role noria
+  Cabina[2] role cabina
 end
 
-constraints
+association InformaMR between
+  CRA[0..1] role craMontana
+  Vagon[1] role vagonInforme
+end
+
+association TieneNorias between
+  ParqueAtracciones[1] role parqueatracciones
+  Noria[1] role noria
+end
+
+composition ComponeMontana between
+  MontanaRusa[0..1] role montanarusa
+  Vagon[1] role vagon
+end
+class MontanaRusa
+attributes
+  error : Boolean
+  calle : String
+end
+
+association SeLocalizaEn between
+  Ciudad[1] role ciudad
+  ParqueAtracciones[1] role parqueatracciones
+end
