@@ -6,7 +6,7 @@ enum CauseOfDeath {EUTANASIA,SUICIDIO,HOMICIDIO,NATURAL,ACCIDENTE}
 class Person
 attributes
     birthYear:Integer
-    deathYear:Integer
+    deathYear:Integer init = null
     age:Integer
     causeOfDeath:CauseOfDeath
     isDead:Boolean
@@ -43,7 +43,7 @@ end
 class Clock
 attributes
     NOW:Integer init = 0
-    started:Boolean init false
+    started:Boolean init = false
 operations
     tick() 
       begin
@@ -55,7 +55,6 @@ operations
         end    
       end
 
-     started
 
 
 end
@@ -98,7 +97,7 @@ constraints
 
 context Person
 inv NoMorirAntesDeNacer:
-    self.birthYear < self.deathYear
+   self.deathYear = null or self.birthYear <= self.deathYear
 
 inv NoNacerEnFuturo:
     self.community.clock.NOW >= self.birthYear
