@@ -30,8 +30,24 @@ attributes
             end
         addYear()
             begin
-                self.age:=self.age+1;
-            end
+        ---        self.age:=self.age+1;
+        ---    end
+        ---pedirMatrimonio(p.Person)
+        ---    begin
+        ---
+        ---    end
+        ---pedirDivorcio(p.Person)
+        ---    begin
+        ---
+        ---    end
+        ---aceptarMatrimonio()
+        ---    begin
+        ---
+        ---    end
+        ---aceptarDivorcio()
+        ---    begin
+        ---
+        ---    end
 end
 
 class Marriage
@@ -89,6 +105,16 @@ end
 association Marido between
     Person [1] role husband
     Marriage [0..*] role wife
+end
+
+association PedidaMatrimonio between 
+    Person [1] role pretendiente
+    Person [1] role pretendido
+end
+
+association PedidaDivorcio between 
+    Person [1] role divorciador
+    Person [1] role divorciado
 end
 
 
