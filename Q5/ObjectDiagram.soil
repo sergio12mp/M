@@ -1,31 +1,71 @@
 reset
-----------
+--------Clock--------
+
 !new Clock('Reloj1')
+!Reloj1.NOW := 2022
+
+------Comunidad------
+
+!new Community('Espana')
+!Espana.youngAge:= 10
+!Espana.adultAge:= 18
+!Espana.oldAge:= 64
+!insert(Espana,Reloj1) into IsCommunity
 
 ------Personas-------
+
 !new Person('Pablo')
 !Pablo.birthYear:=2000
 !Pablo.deathYear:=2018
+!Pablo.age:=18
+!insert(Espana,Pablo) into PerteneceAComunidad
+
 !new Person('Antonio')
 !Antonio.birthYear:=2001
 !Antonio.deathYear:=2017
+!Antonio.age:=18
 !Antonio.causeOfDeath:= #HOMICIDIO
+!insert(Espana,Antonio) into PerteneceAComunidad
+
 !new Person('Sergio')
-!Sergio.birthYear:=2010
+!Sergio.birthYear:=2000
+!Sergio.age:=18
+!insert(Espana,Sergio) into PerteneceAComunidad
+
 !new Person('Nacho')
 !Nacho.birthYear:=2000
+!Nacho.age:=9999999
+!insert(Espana,Nacho) into PerteneceAComunidad
+
 !new Person('Carlos')
 !Carlos.birthYear:=2002
+!Carlos.age:=18
+!insert(Espana,Carlos) into PerteneceAComunidad
+
 !new Person('Maria')
 !Maria.birthYear:=1999
+!Maria.age:=18
+!insert(Espana,Maria) into PerteneceAComunidad
+
 !new Person('Irene')
 !Irene.birthYear:=1998
+!Irene.age:=18
+!insert(Espana,Irene) into PerteneceAComunidad
+
 !new Person('Noelia')
 !Noelia.birthYear:=2003
+!Noelia.age:=18
+!insert(Espana,Noelia) into PerteneceAComunidad
+
 !new Person('Susana')
-!Susana-birthYear:=2000
+!Susana.birthYear:=2000
+!Susana.age:=18
+!insert(Espana,Susana) into PerteneceAComunidad
+
 !new Person('Lana')
-!Isabel.birthYear:=2000
+!Lana.birthYear:=2000
+!Lana.age:=18
+!insert(Espana,Lana) into PerteneceAComunidad
 
 !new Marriage('Matrimonio1')
 !Matrimonio1.startYear := 2015
@@ -42,11 +82,14 @@ reset
 !new Marriage('Matrimonio3')
 !Matrimonio3.startYear := 2014
 !Matrimonio3.endYear := 2016
+!insert (Carlos, Matrimonio3) into Mujer
+!insert (Irene, Matrimonio3) into Marido
 
 !new Marriage('Matrimonio4')
 !Matrimonio4.startYear := 2014
 !Matrimonio4.endYear := 2016
-
+!insert (Nacho, Matrimonio4) into Mujer
+!insert (Lana, Matrimonio4) into Marido
 
 
 
