@@ -1,6 +1,7 @@
 model ObjectToClassModel
 
---Preguntar clase abstracta atraccion
+enum TipoDeAtraccion {MONTANARUSA, NORIA}
+
 class Operario
 attributes
   disponible : Boolean
@@ -11,18 +12,18 @@ association AsignadoA between
   Dispositvo[1] role dispositivo
 end
 
-association InformaNoria between
-  CRA[0..1] role cra
-  Cabina[1] role cabina
-end
+---association InformeError between
+---  CRA[0..1] role craConfirmacion
+---  Vagon[1] role vagonConfirmacion
+---end
 
 class Ciudad
 end
 
-class Cabina
+class Atraccion
 attributes
-  detectorActivado : Boolean
-
+    calle : String
+    tipo : TipoDeAtraccion
 end
 
 class Dispositvo
@@ -30,14 +31,9 @@ attributes
   nAvisosResueltos : Integer
 end
 
-association TieneMRs between
-  ParqueAtracciones[1] role parqueAtracciones
-  MontanaRusa[1] role montanarusa
-end
-
-association BienAnclado between
-  CRA[0..1] role craNoria
-  Cabina [1] role DetectorNoria
+association TieneAtracciones between
+  ParqueAtracciones [1] role parqueAtracciones
+  Atraccion [0..1] role atraccion
 end
 
 class ParqueAtracciones
@@ -51,15 +47,10 @@ end
 class CRA
 end
 
-class Noria
-attributes
-  error : Boolean
-  calle : String
-end
 
 association AvisaA between
-  Vagon[1] role vagon
-  CRA[0..1] role cra
+  Vagon[1] role vagonEnvio
+  CRA[0..1] role craEnvio
 end
 
 associationclass Mensaje between
@@ -70,29 +61,9 @@ attributes
   id : Integer 
 end
 
-composition ComponeNoria between
-  Noria[1] role noria
-  Cabina[2] role cabina
-end
-
-association InformaMR between
-  CRA[0..1] role craMontana
-  Vagon[1] role vagonInforme
-end
-
-association TieneNorias between
-  ParqueAtracciones[1] role parqueatracciones
-  Noria[1] role noria
-end
-
-composition ComponeMontana between
-  MontanaRusa[0..1] role montanarusa
-  Vagon[1] role vagon
-end
-class MontanaRusa
-attributes
-  error : Boolean
-  calle : String
+composition ComponeAtraccion between
+  Atraccion[1] role atraccion
+  Vagon[1..*] role vagon
 end
 
 association SeLocalizaEn between
