@@ -83,4 +83,5 @@ context Atraccion
 inv NoRunSiHayFallo:
     self.vagon->forAll(v | v.detectorActivado = true implies v.atraccion.run=false)
 inv RunSiNoHayFallo:
-    self.vagon->forAll(v1, v2 | v1<>v2 and v1.detectorActivado=false and v2.detectorActivado=false implies v1.atraccion.run=true and )  
+    let contador : Integer = 0 in
+    self.vagon->forAll(v | v.detectorActivado=false  implies v.atraccion.run=true and contador=contador+1) and contador=self.vagon->size()
