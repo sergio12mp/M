@@ -1,0 +1,28 @@
+reset
+-- Clases--
+
+!new Ciudad('Malaga')
+!new Ciudad('Wisconsin')
+
+!new ParqueAtracciones('Tivoli')
+!new ParqueAtracciones('Ibailand')
+
+!new Atraccion('CaidaDeLaMuerte')
+!CaidaDeLaMuerte.calle:= 'Andalucia'
+!CaidaDeLaMuerte.tipo:= #MONTANARUSA
+
+!new Atraccion('MalagaEye')
+!MalagaEye.calle:= 'Pollamadura'
+!MalagaEye.tipo:= #NORIA
+
+!new Vagon('Vagon1')
+!new Vagon('Vagon2')
+!new Vagon('Vagon3')
+!new Vagon('Vagon4')
+!new Vagon('Vagon5')
+
+!new CRA('CRA1')
+
+!new Dispositvo('D1')
+!new Dispositvo('D2')
+!new Dispositvo('D3')

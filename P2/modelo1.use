@@ -4,7 +4,7 @@ enum TipoDeAtraccion {MONTANARUSA, NORIA}
 
 class Operario
 attributes
-  disponible : Boolean
+  disponible : Boolean init=true
 end
 
 association AsignadoA between
@@ -24,6 +24,7 @@ class Atraccion
 attributes
     calle : String
     tipo : TipoDeAtraccion
+    run : Boolean
 end
 
 class Dispositvo
@@ -36,7 +37,7 @@ end
 
 class Vagon
 attributes
-  detectorActivado : Boolean
+  detectorActivado : Boolean init=false
 end
 
 
@@ -75,3 +76,11 @@ end
 
 
 --------- Restricciones ---------------
+
+constraints
+
+context Atraccion
+inv NoRunSiHayFallo:
+    self.vagon->forAll(v | v.detectorActivado = true implies v.atraccion.run=false)
+inv RunSiNoHayFallo:
+    self.vagon->forAll()  
