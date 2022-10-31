@@ -7,11 +7,6 @@ attributes
   disponible : Boolean init=true
 end
 
----association InformeError between
----  CRA[0..1] role craConfirmacion
----  Vagon[1] role vagonConfirmacion
----end
-
 class Ciudad
 end
 
@@ -24,7 +19,7 @@ end
 
 class Dispositvo
 attributes
-  nAvisosResueltos : Integer
+  nAvisosResueltos : Integer init=0
 end
 
 class ParqueAtracciones

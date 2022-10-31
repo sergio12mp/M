@@ -64,11 +64,11 @@ reset
 
 !insert (D2, CRA1) into Mensaje
 !Mensaje2.calle:= CaidaDeLaMuerte.calle
-!Mensaje1.id:= 2
+!Mensaje2.id:= 2
 
 !insert (D3, CRA1) into Mensaje
 !Mensaje3.calle:= 'Callecita'
-!Mensaje1.id:= 3
+!Mensaje3.id:= 3
 
 
 check
