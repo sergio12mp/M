@@ -14,7 +14,7 @@ class Atraccion
 attributes
     calle : String
     tipo : TipoDeAtraccion
-    run : Boolean
+    run : Boolean init=true
 end
 
 class Dispositvo
