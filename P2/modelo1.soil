@@ -12,7 +12,7 @@ reset
 !CaidaDeLaMuerte.tipo:= #MONTANARUSA
 
 !new Atraccion('MalagaEye')
-!MalagaEye.calle:= 'Extremadura'
+!MalagaEye.calle:= 'Pollamadura'
 !MalagaEye.tipo:= #NORIA
 
 !new Vagon('Vagon1')
