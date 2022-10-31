@@ -83,4 +83,4 @@ context Atraccion
 inv NoRunSiHayFallo:
     self.vagon->forAll(v | v.detectorActivado = true implies v.atraccion.run=false)
 inv RunSiNoHayFallo:
-    self.vagon->forAll()  
+    self.vagon->forAll(v1, v2 | v1<>v2 and v1.detectorActivado=false and v2.detectorActivado=false implies v1.atraccion.run=true and )  
