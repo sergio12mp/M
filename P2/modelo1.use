@@ -75,8 +75,8 @@ end
 constraints
 
 context Atraccion
-inv NoRunSiHayFallo:
-    self.vagon->forAll(v | v.detectorActivado = true implies v.atraccion.run=false)
-inv RunSiNoHayFallo:
-    let contador : Integer = 0 in
-    self.vagon->forAll(v | v.detectorActivado=false  implies v.atraccion.run=true and contador=contador+1) and contador=self.vagon->size()
+inv NoFailRun: --este debe dar OK
+  self.vagon -> forAll(v | v.detectorActivado=false implies v.atraccion.run=true)
+inv FailStop: --este debe dar OK
+  self.vagon -> forAll(v | v.detectorActivado=true implies v.atraccion.run=false)
+

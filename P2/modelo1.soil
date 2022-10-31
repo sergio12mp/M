@@ -10,12 +10,14 @@ reset
 !new Atraccion('CaidaDeLaMuerte')
 !CaidaDeLaMuerte.calle:= 'Andalucia'
 !CaidaDeLaMuerte.tipo:= #MONTANARUSA
+--!CaidaDeLaMuerte.run:= false
 
 !new Atraccion('MalagaEye')
 !MalagaEye.calle:= 'Extremadura'
 !MalagaEye.tipo:= #NORIA
 
 !new Vagon('Vagon1')
+--!Vagon1.detectorActivado:= true
 !new Vagon('Vagon2')
 !new Vagon('Vagon3')
 !new Vagon('Vagon4')
@@ -32,9 +34,6 @@ reset
 !new Dispositvo('D3')
 
 --Relaciones --
-
---!insert (D1, CRA1) into Mensaje
---!Mensaje1.calle:= MalagaEye.calle
 
 !insert (Malaga, Tivoli) into SeLocalizaEn
 !insert (Wisconsin, Ibailand) into SeLocalizaEn
