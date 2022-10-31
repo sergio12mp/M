@@ -26,3 +26,23 @@ reset
 !new Dispositvo('D1')
 !new Dispositvo('D2')
 !new Dispositvo('D3')
+
+--Relaciones --
+
+--!insert (D1, CRA1) into Mensaje
+--!Mensaje1.calle:= MalagaEye.calle
+
+!insert (Malaga, Tivoli) into SeLocalizaEn
+!insert (Wisconsin, Ibailand) into SeLocalizaEn
+
+!insert(Tivoli, CaidaDeLaMuerte) into TieneAtracciones
+!insert(Tivoli, MalagaEye) into TieneAtracciones
+
+!insert (CaidaDeLaMuerte, Vagon1) into ComponeAtraccion
+!insert (CaidaDeLaMuerte, Vagon2) into ComponeAtraccion
+!insert (MalagaEye, Vagon3) into ComponeAtraccion
+!insert (MalagaEye, Vagon4) into ComponeAtraccion
+!insert (MalagaEye, Vagon5) into ComponeAtraccion
+
+
+check

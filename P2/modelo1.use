@@ -56,7 +56,7 @@ end
 
 association TieneAtracciones between
   ParqueAtracciones [1] role parqueAtracciones
-  Atraccion [0..1] role atraccion
+  Atraccion [0..*] role atraccion
 end
 
 association AvisaA between
