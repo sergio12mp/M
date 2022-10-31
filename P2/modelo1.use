@@ -39,7 +39,7 @@ associationclass Mensaje between
   CRA[1] role cra
 attributes
   calle : String
-  id : Integer 
+  id : String
 end
 
 ------------- Asociaciones ---------------

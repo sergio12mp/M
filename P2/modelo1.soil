@@ -60,15 +60,15 @@ reset
 
 !insert (D1, CRA1) into Mensaje
 !Mensaje1.calle:= MalagaEye.calle
-!Mensaje1.id:= 1
+!Mensaje1.id:= "Vagon4"
 
 !insert (D2, CRA1) into Mensaje
 !Mensaje2.calle:= CaidaDeLaMuerte.calle
-!Mensaje2.id:= 2
+!Mensaje2.id:= "Vagon1"
 
 !insert (D3, CRA1) into Mensaje
 !Mensaje3.calle:= 'Callecita'
-!Mensaje3.id:= 3
+!Mensaje3.id:= "Vagon2"
 
 
 check
