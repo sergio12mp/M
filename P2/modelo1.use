@@ -60,8 +60,8 @@ association TieneAtracciones between
 end
 
 association AvisaA between
-  Vagon[1] role vagonEnvio
-  CRA[0..*] role craEnvio
+  Vagon[0..*] role vagonEnvio
+  CRA[1] role craEnvio
 end
 
 composition ComponeAtraccion between
