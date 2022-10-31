@@ -31,11 +31,6 @@ attributes
   nAvisosResueltos : Integer
 end
 
-association TieneAtracciones between
-  ParqueAtracciones [1] role parqueAtracciones
-  Atraccion [0..1] role atraccion
-end
-
 class ParqueAtracciones
 end
 
@@ -44,13 +39,8 @@ attributes
   detectorActivado : Boolean
 end
 
+
 class CRA
-end
-
-
-association AvisaA between
-  Vagon[1] role vagonEnvio
-  CRA[0..1] role craEnvio
 end
 
 associationclass Mensaje between
@@ -59,6 +49,18 @@ associationclass Mensaje between
 attributes
   calle : String
   id : Integer 
+end
+
+------------- Asociaciones ---------------
+
+association TieneAtracciones between
+  ParqueAtracciones [1] role parqueAtracciones
+  Atraccion [0..1] role atraccion
+end
+
+association AvisaA between
+  Vagon[1] role vagonEnvio
+  CRA[0..1] role craEnvio
 end
 
 composition ComponeAtraccion between
@@ -70,3 +72,6 @@ association SeLocalizaEn between
   Ciudad[1] role ciudad
   ParqueAtracciones[1] role parqueatracciones
 end
+
+
+--------- Restricciones ---------------
