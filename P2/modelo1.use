@@ -7,11 +7,6 @@ attributes
   disponible : Boolean init=true
 end
 
-association AsignadoA between
-  Operario[1] role operario
-  Dispositvo[1] role dispositivo
-end
-
 ---association InformeError between
 ---  CRA[0..1] role craConfirmacion
 ---  Vagon[1] role vagonConfirmacion
@@ -54,6 +49,11 @@ end
 
 ------------- Asociaciones ---------------
 
+association AsignadoA between
+  Operario[1] role operario
+  Dispositvo[1] role dispositivo
+end
+
 association TieneAtracciones between
   ParqueAtracciones [1] role parqueAtracciones
   Atraccion [0..*] role atraccion
@@ -61,7 +61,7 @@ end
 
 association AvisaA between
   Vagon[1] role vagonEnvio
-  CRA[0..1] role craEnvio
+  CRA[0..*] role craEnvio
 end
 
 composition ComponeAtraccion between

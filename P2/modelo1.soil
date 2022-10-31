@@ -12,7 +12,7 @@ reset
 !CaidaDeLaMuerte.tipo:= #MONTANARUSA
 
 !new Atraccion('MalagaEye')
-!MalagaEye.calle:= 'Pollamadura'
+!MalagaEye.calle:= 'Extremadura'
 !MalagaEye.tipo:= #NORIA
 
 !new Vagon('Vagon1')
@@ -22,6 +22,10 @@ reset
 !new Vagon('Vagon5')
 
 !new CRA('CRA1')
+
+!new Operario('Federico')
+!new Operario('ManyManitas')
+!new Operario('Pepe')
 
 !new Dispositvo('D1')
 !new Dispositvo('D2')
@@ -43,6 +47,28 @@ reset
 !insert (MalagaEye, Vagon3) into ComponeAtraccion
 !insert (MalagaEye, Vagon4) into ComponeAtraccion
 !insert (MalagaEye, Vagon5) into ComponeAtraccion
+
+!insert (Vagon1, CRA1) into AvisaA
+!insert (Vagon2, CRA1) into AvisaA
+!insert (Vagon3, CRA1) into AvisaA
+!insert (Vagon4, CRA1) into AvisaA
+!insert (Vagon5, CRA1) into AvisaA
+
+!insert (Federico, D1) into AsignadoA
+!insert (ManyManitas, D2) into AsignadoA
+!insert (Pepe, D3) into AsignadoA
+
+!insert (D1, CRA1) into Mensaje
+!Mensaje1.calle:= MalagaEye.calle
+!Mensaje1.id:= 1
+
+!insert (D2, CRA1) into Mensaje
+!Mensaje2.calle:= CaidaDeLaMuerte.calle
+!Mensaje1.id:= 2
+
+!insert (D3, CRA1) into Mensaje
+!Mensaje3.calle:= 'Callecita'
+!Mensaje1.id:= 3
 
 
 check
