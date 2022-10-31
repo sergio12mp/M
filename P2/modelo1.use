@@ -4,7 +4,7 @@ enum TipoDeAtraccion {MONTANARUSA, NORIA}
 
 class Operario
 attributes
-  disponible : Boolean
+  disponible : Boolean init=true
 end
 
 association AsignadoA between
