@@ -75,8 +75,8 @@ end
 constraints
 
 context Atraccion
-inv NoFailRun: --este debe dar OK
-  self.vagon -> forAll(v | v.detectorActivado=false implies v.atraccion.run=true)
-inv FailStop: --este debe dar OK
-  self.vagon -> forAll(v | v.detectorActivado=true implies v.atraccion.run=false)
+inv EnMarchaImplicaSinFallos:
+  self.run=true implies self.vagon -> forAll(detectorActivado=false)
 
+inv ParadaImplicaFallo:
+  self.run=false implies self.vagon -> select(v | v.detectorActivado=true) -> size() > 0
