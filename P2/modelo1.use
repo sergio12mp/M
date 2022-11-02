@@ -38,9 +38,7 @@ end
 associationclass Mensaje between
   Dispositvo[0..*] role dispositivo
   CRA[1] role cra
-attributes
-  calle : String
-  id : String
+
 end
 
 ------------- Asociaciones ---------------
@@ -70,9 +68,9 @@ association SeLocalizaEn between
   ParqueAtracciones[1] role parqueatracciones
 end
 
-association Trabaja between
-  Operario[0..1] role operario
-  CRA[0..*]role cra
+association TieneDispositivos between
+  Dispositvo[0..*] role dispositivoDisponible
+  CRA[0..1]role craRecibe
 end
 
 association Falla between
