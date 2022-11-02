@@ -96,4 +96,3 @@ context Dispositvo
 inv ResueltosNoNegativos:
   self.nAvisosResueltos > 0
 
-
