@@ -66,7 +66,7 @@ class CRA
     declare op:Operario;
     op:= self.dispositivo.operario->any(o |o.disponible);
     op.disponible:=false;
-    op.ArreglarFallo();
+   -- op.ArreglarFallo();
     insert(op.dispositivo, self) into  Mensaje;
     end
     --pre --Se le envía un fallo al CRA

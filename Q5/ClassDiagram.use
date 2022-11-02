@@ -123,6 +123,16 @@ association PedidaDivorcio between
     Person [0..1] role divorciado
 end
 
+association AceptaMatrimonio between 
+    Person [0..1] role marido
+    Person [0..1] role mujer
+end
+
+association AceptaDivorcio between 
+    Person [0..1] role exmarido
+    Person [0..1] role exmujer
+end
+
 
 -----Constraints----
 constraints
