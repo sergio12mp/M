@@ -5,7 +5,13 @@ enum TipoDeAtraccion {MONTANARUSA, NORIA}
 class Operario
 attributes
   disponible : Boolean init=true
-
+operations
+  arregla()
+    begin
+      self.disponible:=true;
+      self.vagon.detectorActivado:=false;
+      delete(self,self.vagon) from Mantenimiento;
+    end
 end
 
 class Ciudad
@@ -31,6 +37,15 @@ attributes
       self.run := true;
       end
       post running : self.run
+
+     comprobarEstado()
+      begin
+        if self.vagon->select(v | v.detectorActivado=true)->size() > 0 then
+          self.para();
+        else
+          self.sigue();
+        end;
+      end 
 end
 
 class Dispositvo
