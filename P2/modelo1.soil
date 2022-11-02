@@ -10,12 +10,14 @@ reset
 !new Atraccion('CaidaDeLaMuerte')
 !CaidaDeLaMuerte.calle:= 'Andalucia'
 !CaidaDeLaMuerte.tipo:= #MONTANARUSA
+!CaidaDeLaMuerte.run:= true
 
 !new Atraccion('MalagaEye')
-!MalagaEye.calle:= 'Pollamadura'
+!MalagaEye.calle:= 'Extremadura'
 !MalagaEye.tipo:= #NORIA
 
 !new Vagon('Vagon1')
+!Vagon1.detectorActivado:= false
 !new Vagon('Vagon2')
 !new Vagon('Vagon3')
 !new Vagon('Vagon4')
@@ -23,14 +25,15 @@ reset
 
 !new CRA('CRA1')
 
+!new Operario('Federico')
+!new Operario('ManyManitas')
+!new Operario('Pepe')
+
 !new Dispositvo('D1')
 !new Dispositvo('D2')
 !new Dispositvo('D3')
 
 --Relaciones --
-
---!insert (D1, CRA1) into Mensaje
---!Mensaje1.calle:= MalagaEye.calle
 
 !insert (Malaga, Tivoli) into SeLocalizaEn
 !insert (Wisconsin, Ibailand) into SeLocalizaEn
@@ -44,5 +47,27 @@ reset
 !insert (MalagaEye, Vagon4) into ComponeAtraccion
 !insert (MalagaEye, Vagon5) into ComponeAtraccion
 
+!insert (Vagon1, CRA1) into AvisaA
+!insert (Vagon2, CRA1) into AvisaA
+!insert (Vagon3, CRA1) into AvisaA
+!insert (Vagon4, CRA1) into AvisaA
+!insert (Vagon5, CRA1) into AvisaA
 
+!insert (Federico, D1) into AsignadoA
+!insert (ManyManitas, D2) into AsignadoA
+!insert (Pepe, D3) into AsignadoA
+
+!insert (D1, CRA1) into Mensaje
+!Mensaje1.calle:= MalagaEye.calle
+!Mensaje1.id:= 'Vagon4'
+
+!insert (D2, CRA1) into Mensaje
+!Mensaje2.calle:= CaidaDeLaMuerte.calle
+!Mensaje2.id:= 'Vagon1'
+
+!insert (D3, CRA1) into Mensaje
+!Mensaje3.calle:= 'Callecita'
+!Mensaje3.id:= 'Vagon2'
+
+--------------------------------
 check
