@@ -93,7 +93,7 @@ inv ParadaImplicaFallo:
 
 context Dispositvo
 inv ResueltosNoNegativos:
-  self.nAvisosResueltos > 0
+  self.nAvisosResueltos >= 0
 
 context CRA
 inv CRAUnica:
