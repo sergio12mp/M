@@ -37,9 +37,7 @@ end
 associationclass Mensaje between
   Dispositvo[0..*] role dispositivo
   CRA[1] role cra
-attributes
-  calle : String
-  id : String
+
 end
 
 ------------- Asociaciones ---------------
