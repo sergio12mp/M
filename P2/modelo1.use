@@ -12,9 +12,10 @@ end
 
 class Atraccion
 attributes
-    calle : String
-    tipo : TipoDeAtraccion
-    run : Boolean init=true
+  calle : String
+  tipo : TipoDeAtraccion
+  run : Boolean init=true
+
 end
 
 class Dispositvo
@@ -99,4 +100,8 @@ inv ParadaImplicaFallo:
 context Dispositvo
 inv ResueltosNoNegativos:
   self.nAvisosResueltos > 0
+
+context CRA
+inv CRAUnica:
+  CRA.allInstances() -> size = 1
 
