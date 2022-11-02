@@ -12,10 +12,9 @@ end
 
 class Atraccion
 attributes
-  calle : String
-  tipo : TipoDeAtraccion
-  run : Boolean init=true
-
+    calle : String
+    tipo : TipoDeAtraccion
+    run : Boolean init=true
 end
 
 class Dispositvo
@@ -33,6 +32,17 @@ end
 
 
 class CRA
+  operations
+    AsignarOperario()
+    begin
+    declare op:Operario;
+    op:= self.dispositivo.operario->any(o |o.disponible);
+    op.disponible:=false;
+    --op.ArreglarFallo();
+    insert(op.dispositivo, self) into  Mensaje;
+    end
+    --pre --Se le envía un fallo al CRA
+   -- post OperarioNoDisponible
 end
 
 associationclass Mensaje between
@@ -94,8 +104,4 @@ inv ParadaImplicaFallo:
 context Dispositvo
 inv ResueltosNoNegativos:
   self.nAvisosResueltos > 0
-
-context CRA
-inv CRAUnica:
-  CRA.allInstances() -> size = 1
 
