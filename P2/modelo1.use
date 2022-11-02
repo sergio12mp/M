@@ -5,6 +5,7 @@ enum TipoDeAtraccion {MONTANARUSA, NORIA}
 class Operario
 attributes
   disponible : Boolean init=true
+
 end
 
 class Ciudad
@@ -12,14 +13,35 @@ end
 
 class Atraccion
 attributes
-    calle : String
-    tipo : TipoDeAtraccion
-    run : Boolean init=true
+  calle : String
+  tipo : TipoDeAtraccion
+  run : Boolean init=true
+  operations
+    para()
+      --pre estaFuncionando : self.run = true
+      begin 
+        --self.Vagon -> forAll ( v | v.detectorActivado = true implies v.atraccion.run = false)
+        self.run := false;
+      end 
+      post parado : not self.run 
+
+    sigue()
+      --pre estaParada : self.run = false
+      begin
+      self.run := true;
+      end
+      post running : self.run
 end
 
 class Dispositvo
 attributes
   nAvisosResueltos : Integer init=0
+
+operations
+  sumaAvisoResuelto()
+  begin
+    self.nAvisosResueltos:=self.nAvisosResueltos+1;
+  end
 end
 
 class ParqueAtracciones
@@ -28,6 +50,12 @@ end
 class Vagon
 attributes
   detectorActivado : Boolean init=false
+operations
+  falla(cra:CRA)
+    begin
+      self.detectorActivado:=true;
+      insert(self,cra) into AvisaA      
+    end
 end
 
 
@@ -38,7 +66,7 @@ class CRA
     declare op:Operario;
     op:= self.dispositivo.operario->any(o |o.disponible);
     op.disponible:=false;
-    --op.ArreglarFallo();
+    op.ArreglarFallo();
     insert(op.dispositivo, self) into  Mensaje;
     end
     --pre --Se le envía un fallo al CRA
@@ -103,5 +131,4 @@ inv ParadaImplicaFallo:
 
 context Dispositvo
 inv ResueltosNoNegativos:
-  self.nAvisosResueltos > 0
-
+  self.nAvisosResueltos >= 0
