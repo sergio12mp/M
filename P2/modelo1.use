@@ -105,11 +105,6 @@ association TieneDispositivos between
   CRA[0..1]role craRecibe
 end
 
-association Falla between
-  Mensaje[0..1] role mensaje
-  Vagon[0..1] role vagon
-end
-
 association Mantenimiento between
   Operario [0..1] role operario
   Vagon [0..1] role vagon
