@@ -80,3 +80,10 @@ inv EnMarchaImplicaSinFallos:
 
 inv ParadaImplicaFallo:
   self.run=false implies self.vagon -> select(v | v.detectorActivado=true) -> size() > 0
+
+
+context Dispositvo
+inv ResueltosNoNegativos:
+  self.nAvisosResueltos > 0
+
+
