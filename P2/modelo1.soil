@@ -10,14 +10,12 @@ reset
 !new Atraccion('CaidaDeLaMuerte')
 !CaidaDeLaMuerte.calle:= 'Andalucia'
 !CaidaDeLaMuerte.tipo:= #MONTANARUSA
-!CaidaDeLaMuerte.run:= true
 
 !new Atraccion('MalagaEye')
 !MalagaEye.calle:= 'Extremadura'
 !MalagaEye.tipo:= #NORIA
 
 !new Vagon('Vagon1')
-!Vagon1.detectorActivado:= false
 !new Vagon('Vagon2')
 !new Vagon('Vagon3')
 !new Vagon('Vagon4')
