@@ -69,6 +69,16 @@ association SeLocalizaEn between
   ParqueAtracciones[1] role parqueatracciones
 end
 
+association Trabaja between
+  Operario[0..1] role operario
+  CRA[0..*]role cra
+end
+
+association Falla between
+  Mensaje[0..1] role mensaje
+  Vagon[0..1] role vagon
+end
+
 
 --------- Restricciones ---------------
 
