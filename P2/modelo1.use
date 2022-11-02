@@ -73,12 +73,6 @@ class CRA
    -- post OperarioNoDisponible
 end
 
-associationclass Mensaje between
-  Dispositvo[0..*] role dispositivo
-  CRA[1] role cra
-
-end
-
 ------------- Asociaciones ---------------
 
 association AsignadoA between
@@ -116,6 +110,11 @@ association Falla between
   Vagon[0..1] role vagon
 end
 
+association Mantenimiento between
+  Operario [0..1] role operario
+  Vagon [0..1] role vagon
+end
+
 
 --------- Restricciones ---------------
 
@@ -127,7 +126,6 @@ inv EnMarchaImplicaSinFallos:
 
 inv ParadaImplicaFallo:
   self.run=false implies self.vagon -> select(v | v.detectorActivado=true) -> size() > 0
-
 
 context Dispositvo
 inv ResueltosNoNegativos:
