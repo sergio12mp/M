@@ -15,7 +15,21 @@ attributes
   calle : String
   tipo : TipoDeAtraccion
   run : Boolean init=true
+  operations
+    para()
+      --pre estaFuncionando : self.run = true
+      begin 
+        --self.Vagon -> forAll ( v | v.detectorActivado = true implies v.atraccion.run = false)
+        self.run := false;
+      end 
+      post parado : not self.run 
 
+    sigue()
+      --pre estaParada : self.run = false
+      begin
+      self.run := true;
+      end
+      post running : self.run
 end
 
 class Dispositvo
