@@ -29,6 +29,12 @@ end
 class Vagon
 attributes
   detectorActivado : Boolean init=false
+operations
+  falla(cra:CRA)
+    begin
+      self.detectorActivado:=true;
+      insert(self,cra) into AvisaA      
+    end
 end
 
 
