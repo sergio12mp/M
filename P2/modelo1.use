@@ -5,6 +5,7 @@ enum TipoDeAtraccion {MONTANARUSA, NORIA}
 class Operario
 attributes
   disponible : Boolean init=true
+
 end
 
 class Ciudad
@@ -21,6 +22,12 @@ end
 class Dispositvo
 attributes
   nAvisosResueltos : Integer init=0
+
+operations
+  sumaAvisoResuelto()
+  begin
+    self.nAvisosResueltos:=self.nAvisosResueltos+1;
+  end
 end
 
 class ParqueAtracciones
