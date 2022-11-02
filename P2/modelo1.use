@@ -60,17 +60,17 @@ end
 
 
 class CRA
-  --operations
-  --  AsignarOperario()
-  --  begin
-  --  declare op:Operario;
-  --  op:= self.dispositivo.operario->any(o |o.disponible);
-  --  op.disponible:=false;
-  -- -- op.ArreglarFallo();
-  --  insert(op.dispositivo, self) into  Mensaje;
-  --  end
-  --  --pre --Se le envía un fallo al CRA
-  -- -- post OperarioNoDisponible
+  operations
+    AsignarOperario(vagon:Vagon)
+    begin
+    declare op:Operario;
+      op:= self.dispositivo.operario->any(o |o.disponible);
+      op.disponible:=false;
+    -- op.ArreglarFallo();
+      insert(op, vagon ) into  Mantenimiento;
+    end
+  --pre --Se le envía un fallo al CRA
+   -- post OperarioNoDisponible
 end
 
 ------------- Asociaciones ---------------
@@ -87,7 +87,7 @@ end
 
 association AvisaA between
   Vagon[0..*] role vagonEnvio
-  CRA[1] role craEnvio
+  CRA[1] role cra
 end
 
 composition ComponeAtraccion between
@@ -101,8 +101,8 @@ association SeLocalizaEn between
 end
 
 association TieneDispositivos between
-  Dispositvo[0..*] role dispositivoDisponible
-  CRA[0..1]role craRecibe
+  Dispositvo[0..*] role dispositivo
+  CRA[0..1]role cra
 end
 
 association Mantenimiento between
