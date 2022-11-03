@@ -55,17 +55,6 @@ reset
 !insert (ManyManitas, D2) into AsignadoA
 !insert (Pepe, D3) into AsignadoA
 
-!insert (D1, CRA1) into Mensaje
-!Mensaje1.calle:= MalagaEye.calle
-!Mensaje1.id:= 'Vagon4'
-
-!insert (D2, CRA1) into Mensaje
-!Mensaje2.calle:= CaidaDeLaMuerte.calle
-!Mensaje2.id:= 'Vagon1'
-
-!insert (D3, CRA1) into Mensaje
-!Mensaje3.calle:= 'Callecita'
-!Mensaje3.id:= 'Vagon2'
 
 --------------------------------
 check

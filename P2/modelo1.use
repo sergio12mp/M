@@ -82,7 +82,7 @@ class CRA
       op:= self.dispositivo.operario->any(o |o.disponible);
       op.disponible:=false;
     -- op.ArreglarFallo();
-      insert(op, vagon ) into  Mantenimiento;
+      insert(op, vagon) into  Mantenimiento;
     end
   --pre --Se le envía un fallo al CRA
    -- post OperarioNoDisponible
