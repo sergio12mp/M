@@ -29,7 +29,7 @@ attributes
       pre estaParada : self.run = false
       post running : self.run
 
-     comprobarEstado()
+    comprobarEstado()
       begin
         if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0 then
           self.para();
