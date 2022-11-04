@@ -46,7 +46,7 @@ operations
   falla(cra: CRA)
     begin
       self.detectorActivado := true;
-      insert(self,cra) into AvisaA   
+      insert(self,cra) into AvisaA;   
       self.cra.AsignarOperario(self);     
     end
     pre: self.detectorActivado = false
@@ -62,7 +62,7 @@ class CRA
       op.disponible := false;
       insert(op, vagon) into  Mantenimiento;
     end
-  pre  operarioDisponible : self.dispositivo.operario -> any(o |o.disponible) = true
+  pre  operarioDisponible : self.dispositivo.operario -> any(o |o.disponible).disponible = true
   post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
 end
 

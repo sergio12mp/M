@@ -7,6 +7,9 @@ reset
 !new ParqueAtracciones('Tivoli')
 !new ParqueAtracciones('Ibailand')
 
+!insert (Malaga, Tivoli) into SeLocalizaEn
+!insert (Wisconsin, Ibailand) into SeLocalizaEn
+
 !new Atraccion('CaidaDeLaMuerte')
 !CaidaDeLaMuerte.calle:= 'Andalucia'
 !CaidaDeLaMuerte.tipo:= #MONTANARUSA
@@ -15,29 +18,14 @@ reset
 !MalagaEye.calle:= 'Extremadura'
 !MalagaEye.tipo:= #NORIA
 
+!insert(Tivoli, CaidaDeLaMuerte) into TieneAtracciones
+!insert(Tivoli, MalagaEye) into TieneAtracciones
+
 !new Vagon('Vagon1')
 !new Vagon('Vagon2')
 !new Vagon('Vagon3')
 !new Vagon('Vagon4')
 !new Vagon('Vagon5')
-
-!new CRA('CRA1')
-
-!new Operario('Federico')
-!new Operario('ManyManitas')
-!new Operario('Pepe')
-
-!new Dispositvo('D1')
-!new Dispositvo('D2')
-!new Dispositvo('D3')
-
---Relaciones --
-
-!insert (Malaga, Tivoli) into SeLocalizaEn
-!insert (Wisconsin, Ibailand) into SeLocalizaEn
-
-!insert(Tivoli, CaidaDeLaMuerte) into TieneAtracciones
-!insert(Tivoli, MalagaEye) into TieneAtracciones
 
 !insert (CaidaDeLaMuerte, Vagon1) into ComponeAtraccion
 !insert (CaidaDeLaMuerte, Vagon2) into ComponeAtraccion
@@ -45,15 +33,28 @@ reset
 !insert (MalagaEye, Vagon4) into ComponeAtraccion
 !insert (MalagaEye, Vagon5) into ComponeAtraccion
 
-!insert (Vagon1, CRA1) into AvisaA
-!insert (Vagon2, CRA1) into AvisaA
-!insert (Vagon3, CRA1) into AvisaA
-!insert (Vagon4, CRA1) into AvisaA
-!insert (Vagon5, CRA1) into AvisaA
+!new CRA('CRA1')
+
+!new Operario('Federico')
+!new Operario('ManyManitas')
+!new Operario('Pepe')
 
 !insert (Federico, D1) into AsignadoA
 !insert (ManyManitas, D2) into AsignadoA
 !insert (Pepe, D3) into AsignadoA
+
+
+!new Dispositvo('D1')
+!new Dispositvo('D2')
+!new Dispositvo('D3')
+
+!insert (D1,CRA1) into TieneDispositivos
+!insert (D2,CRA1) into TieneDispositivos
+!insert (D3,CRA1) into TieneDispositivos
+
+--Relaciones --
+git add
+
 
 
 --------------------------------
