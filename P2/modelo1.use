@@ -2,32 +2,17 @@ model ObjectToClassModel
 
 enum TipoDeAtraccion {MONTANARUSA, NORIA}
 
-class Operario
-attributes
-  disponible : Boolean init=true
-operations
-  arregla()
-    begin
-      self.disponible:=true;
-      self.vagon.detectorActivado:=false;
-      delete(self,self.vagon) from Mantenimiento;
-      self.dispositivo.sumaAvisoResuelto();
-      if(Vagon.allInstances -> exists(v | v.detectorActivado =true)) then
-        self.dispositivo.cra.AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true))
-      end
-    end
-    pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
-    post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
+class Ciudad
 end
 
-class Ciudad
+class ParqueAtracciones
 end
 
 class Atraccion
 attributes
   calle : String
   tipo : TipoDeAtraccion
-  run : Boolean init=true
+  run : Boolean init = true
   operations
     para()
       begin 
@@ -46,7 +31,7 @@ attributes
 
      comprobarEstado()
       begin
-        if self.vagon->select(v | v.detectorActivado=true)->size() > 0 then
+        if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0 then
           self.para();
         else
           self.sigue();
@@ -54,46 +39,59 @@ attributes
       end 
 end
 
+class Vagon
+attributes
+  detectorActivado : Boolean init = false
+operations
+  falla(cra: CRA)
+    begin
+      self.detectorActivado := true;
+      insert(self,cra) into AvisaA      
+    end
+    pre: self.detectorActivado = false
+    post: self.detectorActivado = true
+end
+
+class CRA
+  operations
+    AsignarOperario(vagon: Vagon)
+    begin
+    declare op: Operario;
+      op := self.dispositivo.operario -> any(o |o.disponible);
+      op.disponible := false;
+      insert(op, vagon) into  Mantenimiento;
+    end
+  pre  operarioDisponible : self.dispositivo.operario -> any(o |o.disponible) = true
+  post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
+end
+
 class Dispositvo
 attributes
-  nAvisosResueltos : Integer init=0
-
+  nAvisosResueltos : Integer init = 0
 operations
   sumaAvisoResuelto()
   begin
-    self.nAvisosResueltos:=self.nAvisosResueltos+1;
+    self.nAvisosResueltos := self.nAvisosResueltos+1;
   end
   post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
 end
 
-class ParqueAtracciones
-end
-
-class Vagon
+class Operario
 attributes
-  detectorActivado : Boolean init=false
+  disponible : Boolean init = true
 operations
-  falla(cra:CRA)
+  arregla()
     begin
-      self.detectorActivado:=true;
-      insert(self,cra) into AvisaA      
+      self.disponible := true;
+      self.vagon.detectorActivado := false;
+      delete(self,self.vagon) from Mantenimiento;
+      self.dispositivo.sumaAvisoResuelto();
+      if(Vagon.allInstances -> exists(v | v.detectorActivado = true)) then
+        self.dispositivo.cra.AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true))
+      end
     end
-    pre: self.detectorActivado=false
-    post: self.detectorActivado=true
-end
-
-
-class CRA
-  operations
-    AsignarOperario(vagon:Vagon)
-    begin
-    declare op:Operario;
-      op:= self.dispositivo.operario->any(o |o.disponible);
-      op.disponible:=false;
-      insert(op, vagon) into  Mantenimiento;
-    end
-  pre  operarioDisponible : self.dispositivo.operario->any(o |o.disponible) = true
-  post OperarioNoDisponible : self.dispositivo.operario@pre->select( o | o.disponible)->size() > self.dispositivo.operario->select( o | o.disponible)->size()
+    pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
+    post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
 end
 
 ------------- Asociaciones ---------------
@@ -133,17 +131,16 @@ association Mantenimiento between
   Vagon [0..1] role vagon
 end
 
-
 --------- Restricciones ---------------
 
 constraints
 
 context Atraccion
 inv EnMarchaImplicaSinFallos:
-  self.run=true implies self.vagon -> forAll(detectorActivado=false)
+  self.run = true implies self.vagon -> forAll(detectorActivado = false)
 
 inv ParadaImplicaFallo:
-  self.run=false implies self.vagon -> select(v | v.detectorActivado=true) -> size() > 0
+  self.run = false implies self.vagon -> select(v | v.detectorActivado = true) -> size() > 0
 
 context Dispositvo
 inv ResueltosNoNegativos:
