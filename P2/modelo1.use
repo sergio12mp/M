@@ -11,9 +11,9 @@ operations
       self.disponible:=true;
       self.vagon.detectorActivado:=false;
       delete(self,self.vagon) from Mantenimiento;
-      sumaAvisoResuelto();
+      self.dispositivo.sumaAvisoResuelto();
       if(Vagon.allInstances -> exists(v | v.detectorActivado =true)) then
-        AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true))
+        self.dispositivo.cra.AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true))
       end
     end
     pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
@@ -63,7 +63,7 @@ operations
   begin
     self.nAvisosResueltos:=self.nAvisosResueltos+1;
   end
-  post : self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
+  post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
 end
 
 class ParqueAtracciones
@@ -78,8 +78,8 @@ operations
       self.detectorActivado:=true;
       insert(self,cra) into AvisaA      
     end
-    pre NoPuedeFallarSiYaFalla: self.detectorActivado=false;
-    post : self.detectorActivado=true;
+    pre: self.detectorActivado=false
+    post: self.detectorActivado=true
 end
 
 
