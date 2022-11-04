@@ -39,21 +39,22 @@ reset
 !new Operario('ManyManitas')
 !new Operario('Pepe')
 
+!new Dispositvo('D1')
+!new Dispositvo('D2')
+!new Dispositvo('D3')
+
 !insert (Federico, D1) into AsignadoA
 !insert (ManyManitas, D2) into AsignadoA
 !insert (Pepe, D3) into AsignadoA
 
 
-!new Dispositvo('D1')
-!new Dispositvo('D2')
-!new Dispositvo('D3')
+
 
 !insert (D1,CRA1) into TieneDispositivos
 !insert (D2,CRA1) into TieneDispositivos
 !insert (D3,CRA1) into TieneDispositivos
 
 --Relaciones --
-git add
 
 
 
