@@ -12,6 +12,9 @@ operations
       self.vagon.detectorActivado:=false;
       delete(self,self.vagon) from Mantenimiento;
       sumaAvisoResuelto();
+      if(Vagon.allInstances -> exists(v | v.detectorActivado =true)) then
+        AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true))
+      end
     end
     pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
     post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
