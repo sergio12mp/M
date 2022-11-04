@@ -46,7 +46,8 @@ operations
   falla(cra: CRA)
     begin
       self.detectorActivado := true;
-      insert(self,cra) into AvisaA      
+      insert(self,cra) into AvisaA   
+      self.cra.AsignarOperario(self);     
     end
     pre: self.detectorActivado = false
     post: self.detectorActivado = true
@@ -84,6 +85,7 @@ operations
     begin
       self.disponible := true;
       self.vagon.detectorActivado := false;
+      delete(self.vagon,self.dispositivo.cra) from AvisaA;
       delete(self,self.vagon) from Mantenimiento;
       self.dispositivo.sumaAvisoResuelto();
       if(Vagon.allInstances -> exists(v | v.detectorActivado = true)) then
@@ -108,7 +110,7 @@ end
 
 association AvisaA between
   Vagon[0..*] role vagonEnvio
-  CRA[1] role cra
+  CRA[0..1] role cra
 end
 
 composition ComponeAtraccion between
