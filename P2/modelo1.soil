@@ -21,19 +21,24 @@ reset
 !insert(Tivoli, CaidaDeLaMuerte) into TieneAtracciones
 !insert(Tivoli, MalagaEye) into TieneAtracciones
 
+!new CRA('CRA1')
+
 !new Vagon('Vagon1')
+
 !new Vagon('Vagon2')
 !new Vagon('Vagon3')
 !new Vagon('Vagon4')
 !new Vagon('Vagon5')
+!new Vagon('Vagon6')
 
 !insert (CaidaDeLaMuerte, Vagon1) into ComponeAtraccion
 !insert (CaidaDeLaMuerte, Vagon2) into ComponeAtraccion
-!insert (MalagaEye, Vagon3) into ComponeAtraccion
+!insert (CaidaDeLaMuerte, Vagon3) into ComponeAtraccion
 !insert (MalagaEye, Vagon4) into ComponeAtraccion
 !insert (MalagaEye, Vagon5) into ComponeAtraccion
+!insert (MalagaEye, Vagon6) into ComponeAtraccion
 
-!new CRA('CRA1')
+
 
 !new Operario('Federico')
 !new Operario('ManyManitas')
@@ -48,15 +53,13 @@ reset
 !insert (Pepe, D3) into AsignadoA
 
 
-
-
 !insert (D1,CRA1) into TieneDispositivos
 !insert (D2,CRA1) into TieneDispositivos
 !insert (D3,CRA1) into TieneDispositivos
 
+!Vagon1.falla(CRA1);
+
 --Relaciones --
-
-
 
 --------------------------------
 check

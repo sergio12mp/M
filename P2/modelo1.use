@@ -47,7 +47,8 @@ operations
     begin
       self.detectorActivado := true;
       insert(self,cra) into AvisaA;   
-      self.cra.AsignarOperario(self);     
+      self.cra.AsignarOperario(self); 
+      self.atraccion.comprobarEstado();    
     end
     pre: self.detectorActivado = false
     post: self.detectorActivado = true
@@ -57,13 +58,14 @@ class CRA
   operations
     AsignarOperario(vagon: Vagon)
     begin
-    declare op: Operario;
-      op := self.dispositivo.operario -> any(o |o.disponible);
-      op.disponible := false;
-      insert(op, vagon) into  Mantenimiento;
+      if self.dispositivo.operario -> any(o |o.disponible).disponible = true then
+        declare op: Operario;
+        op := self.dispositivo.operario -> any(o |o.disponible);
+        op.disponible := false;
+        insert(op, vagon) into  Mantenimiento;
+      end
     end
-  pre  operarioDisponible : self.dispositivo.operario -> any(o |o.disponible).disponible = true
-  post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
+ -- post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
 end
 
 class Dispositvo
