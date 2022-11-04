@@ -57,7 +57,7 @@ operations
   begin
     self.nAvisosResueltos:=self.nAvisosResueltos+1;
   end
-  post : self.nAvisosResueltos := self.nAvisosResueltos@pre + 1
+  post : self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
 end
 
 class ParqueAtracciones
