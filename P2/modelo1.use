@@ -11,6 +11,7 @@ operations
       self.disponible:=true;
       self.vagon.detectorActivado:=false;
       delete(self,self.vagon) from Mantenimiento;
+      sumaAvisoResuelto();
     end
     pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
     post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
