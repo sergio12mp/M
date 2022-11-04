@@ -81,11 +81,10 @@ class CRA
     declare op:Operario;
       op:= self.dispositivo.operario->any(o |o.disponible);
       op.disponible:=false;
-    -- op.ArreglarFallo();
       insert(op, vagon) into  Mantenimiento;
     end
-  --pre --Se le envía un fallo al CRA
-   -- post OperarioNoDisponible
+  pre  operarioDisponible : self.dispositivo.operario->any(o |o.disponible) = true
+  post OperarioNoDisponible : self.dispositivo.operario@pre->select( o | o.disponible)->size() > self.dispositivo.operario->select( o | o.disponible)->size()
 end
 
 ------------- Asociaciones ---------------
