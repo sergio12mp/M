@@ -32,7 +32,7 @@ attributes
       post parado : not self.run 
 
     sigue()
-      --pre estaParada : self.run = false
+      pre estaParada : self.run = false
       begin
       self.run := true;
       end
