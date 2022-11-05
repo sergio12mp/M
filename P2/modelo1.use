@@ -65,7 +65,7 @@ class CRA
         insert(op, vagon) into  Mantenimiento;
       end
     end
- -- post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
+  --  post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
 end
 
 class Dispositvo
@@ -90,12 +90,14 @@ operations
       delete(self.vagon,self.dispositivo.cra) from AvisaA;
       delete(self,self.vagon) from Mantenimiento;
       self.dispositivo.sumaAvisoResuelto();
-      if(Vagon.allInstances -> exists(v | v.detectorActivado = true)) then
-        self.dispositivo.cra.AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true))
+      if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
+        self.dispositivo.cra.AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ))
       end
     end
     pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
-    post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
+   -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
+    post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
+
 end
 
 ------------- Asociaciones ---------------

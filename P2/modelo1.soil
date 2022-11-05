@@ -58,6 +58,9 @@ reset
 !Vagon2.falla(CRA1);
 !Vagon3.falla(CRA1);
 !Vagon4.falla(CRA1);
+
+!ManyManitas.arregla();
+
 -- cómo se implementa arregla???
 --------------------------------
 check
