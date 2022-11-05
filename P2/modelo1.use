@@ -46,9 +46,9 @@ operations
   falla(cra: CRA)
     begin
       self.detectorActivado := true;
-      insert(self,cra) into AvisaA;   
-      self.cra.AsignarOperario(self); 
-      self.atraccion.comprobarEstado();    
+      insert(self,cra) into AvisaA; 
+      self.atraccion.comprobarEstado();  
+      self.cra.asignarOperario(self); 
     end
     pre: self.detectorActivado = false
     post: self.detectorActivado = true
@@ -56,7 +56,7 @@ end
 
 class CRA
   operations
-    AsignarOperario(vagon: Vagon)
+    asignarOperario(vagon: Vagon)
     begin
       if self.dispositivo.operario -> any(o |o.disponible).disponible = true then
         declare op: Operario;
@@ -87,15 +87,16 @@ operations
     begin
       self.disponible := true;
       self.vagon.detectorActivado := false;
+      self.dispositivo.sumaAvisoResuelto();
+      self.vagon.atraccion.comprobarEstado();
       delete(self.vagon,self.dispositivo.cra) from AvisaA;
       delete(self,self.vagon) from Mantenimiento;
-      self.dispositivo.sumaAvisoResuelto();
       if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
-        self.dispositivo.cra.AsignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ))
+        self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ))
       end
     end
     pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
-   -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
+    -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
     post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
 
 end
@@ -147,6 +148,7 @@ inv EnMarchaImplicaSinFallos:
 
 inv ParadaImplicaFallo:
   self.run = false implies self.vagon -> select(v | v.detectorActivado = true) -> size() > 0
+
 
 context Dispositvo
 inv ResueltosNoNegativos:
