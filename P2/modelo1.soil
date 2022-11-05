@@ -24,7 +24,6 @@ reset
 !new CRA('CRA1')
 
 !new Vagon('Vagon1')
-
 !new Vagon('Vagon2')
 !new Vagon('Vagon3')
 !new Vagon('Vagon4')
