@@ -19,7 +19,7 @@ attributes
         --self.Vagon -> forAll ( v | v.detectorActivado = true implies v.atraccion.run = false)
         self.run := false;
       end 
-      pre estaFuncionando : self.run = true
+      --pre estaFuncionando : self.run = true esto sobra porque si dos vagones de la misma atraccion fallan da error
       post parado : not self.run 
 
     sigue()
