@@ -37,11 +37,14 @@ attributes
           self.sigue();
         end;
       end 
+      --no ponemos pre y post debido a que ya estan en las operaciones
+      --para y sigue de atraccion.
 end
 
 class Vagon
 attributes
   detectorActivado : Boolean init = false
+--  siendoRevisado : Boolean init = false
 operations
   falla(cra: CRA)
     begin
@@ -63,9 +66,16 @@ class CRA
         op := self.dispositivo.operario -> any(o |o.disponible);
         op.disponible := false;
         insert(op, vagon) into  Mantenimiento;
-      end
+        --vagon.siendoRevisado := true;
+      end;
+--      if self.dispositivo.operario -> select(o | o.disponible ) -> size() <=0 then
+--        vagon.cra.asignarOperario(vagon);
+--      end;
     end
-  --  post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() > self.dispositivo.operario -> select( o | o.disponible) -> size()
+    post OperarioDisponible : self.dispositivo.operario@pre -> any(o |o.disponible).disponible = true implies
+                              vagon.operario = vagon.operario@pre -> append(self.dispositivo.operario -> any(o | o.disponible)) 
+--    post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o |  o.disponible) -> size() <= 0 implies 
+--                                vagon.cra.asignarOperario(vagon)
 end
 
 class Dispositvo
@@ -134,8 +144,10 @@ association TieneDispositivos between
 end
 
 association Mantenimiento between
-  Operario [0..1] role operario
-  Vagon [0..1] role vagon
+  Operario [0..*] role operario ordered --he tenido que cambiar la multiplicidad para poder poner 
+                                        --Vagon.operario como un ordered set y asi hacer el append
+                                        --en la post de asignarOperario
+  Vagon [0..1] role vagon 
 end
 
 --------- Restricciones ---------------
