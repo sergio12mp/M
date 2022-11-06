@@ -39,6 +39,21 @@ attributes
       end 
       --no ponemos pre y post debido a que ya estan en las operaciones
       --para y sigue de atraccion.
+  statemachines
+
+  psm Atraccion
+
+    states
+      inicial: initial
+      enMarcha [self.run]
+      parada [not self.run]
+    
+    transitions
+      inicial -> enMarcha
+      enMarcha -> parada {para()}
+
+      parada -> enMarcha{sigue()}
+end
 end
 
 class Vagon
@@ -169,3 +184,12 @@ inv ResueltosNoNegativos:
 context CRA
 inv CRAUnica:
   CRA.allInstances() -> size() = 1
+
+----------- Maquinas de Estado -------------
+
+
+
+
+
+
+
