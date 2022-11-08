@@ -90,8 +90,8 @@ psm Vagon
   
   states
     inicial: initial
-    funciona [self.detectorActivado]
-    noFunciona [not self.detectorActivado]
+    funciona [not self.detectorActivado]
+    noFunciona [self.detectorActivado]
   
   transitions
     inicial -> funciona
@@ -125,19 +125,20 @@ operations
   end
   post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
     
+  statemachines
    psm Dispositivo
   
       states
         inicial: initial
-        estado []
-        parada [not self.run]
+        ninguno [self.nAvisosResueltos = 0]
+        alguno
       
       transitions
-        inicial -> enMarcha
-        estado -> estado {sumaAvisoResuelto()}
+        inicial -> ninguno
+        ninguno -> alguno {sumaAvisoResuelto()}
+        alguno -> alguno {sumaAvisoResuelto()}
   
   end
-end
       
 end
 
@@ -158,14 +159,13 @@ operations
         self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ))
       end
     end
-    pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
     -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
     post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
   ocuparOperario()
     begin
       self.disponible := false;
     end
-    pre:  self.disponible = true
+    pre estaLibre:  self.disponible = true
     post:  self.disponible = false
 
     statemachines
