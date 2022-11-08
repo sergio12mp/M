@@ -60,7 +60,7 @@ attributes
   
         parada -> enMarcha{sigue()}
   
-  end
+    end
 end
 
 class Vagon
@@ -77,6 +77,20 @@ operations
     end
     pre: self.detectorActivado = false
     post: self.detectorActivado = true
+
+statemachines
+psm Vagon
+  
+  states
+    inicial: initial
+    funciona [self.detectorActivado]
+    noFunciona [not self.detectorActivado]
+  
+  transitions
+    inicial -> funciona
+    funciona -> noFunciona {falla()}
+    noFunciona -> funciona{arregla()}
+    end
 end
 
 class CRA
