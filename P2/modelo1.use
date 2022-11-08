@@ -125,7 +125,19 @@ operations
   end
   post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
     
+   psm Dispositivo
   
+      states
+        inicial: initial
+        estado []
+        parada [not self.run]
+      
+      transitions
+        inicial -> enMarcha
+        estado -> estado {sumaAvisoResuelto()}
+  
+  end
+end
       
 end
 
