@@ -77,6 +77,13 @@ operations
     end
     pre: self.detectorActivado = false
     post: self.detectorActivado = true
+  arreglarVagon()
+    begin
+      self.detectorActivado := false;
+    end
+      pre: self.detectorActivado = true
+      post: self.detectorActivado = false
+
 
 statemachines
 psm Vagon
@@ -89,7 +96,7 @@ psm Vagon
   transitions
     inicial -> funciona
     funciona -> noFunciona {falla()}
-    noFunciona -> funciona{arregla()}
+    noFunciona -> funciona{arreglarVagon()}
     end
 end
 
@@ -100,21 +107,13 @@ class CRA
       if self.dispositivo.operario -> any(o |o.disponible).disponible = true then
         declare op: Operario;
         op := self.dispositivo.operario -> any(o |o.disponible);
-        op.disponible := false;
+        op.ocuparOperario();
         insert(op, vagon) into  Mantenimiento;
                       --vagon.siendoRevisado := true;
       end;
---      if self.dispositivo.operario -> select(o | o.disponible ) -> size() <=0 then
---        vagon.cra.asignarOperario(vagon);
---      end;
     end
       post : self.dispositivo.operario@pre-> select( o | o.disponible)->size() >= self.dispositivo.operario-> select( o | o.disponible)->size()
-
--- post OperarioDisponible : self.dispositivo.operario@pre -> any(o |o.disponible).disponible = true implies
---                          vagon.operario = vagon.operario@pre -> append(self.dispositivo.operario -> any(o | o.disponible)) 
---    post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o |  o.disponible) -> size() <= 0 implies 
---                                vagon.cra.asignarOperario(vagon)
-end
+  end
 
 class Dispositvo
 attributes
@@ -134,7 +133,8 @@ operations
   arregla()
     begin
       self.disponible := true;
-      self.vagon.detectorActivado := false;
+      --self.vagon.detectorActivado := false;
+      self.vagon.arreglarVagon();
       self.dispositivo.sumaAvisoResuelto();
       self.vagon.atraccion.comprobarEstado();
       delete(self.vagon,self.dispositivo.cra) from AvisaA;
@@ -146,7 +146,12 @@ operations
     pre estabaRotoYOperarioLibre : self.vagon.detectorActivado = true and self.disponible = false
     -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
     post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
-
+  ocuparOperario()
+    begin
+      self.disponible := false;
+    end
+    pre:  self.disponible = true
+    post:  self.disponible = false
 end
 
 ------------- Asociaciones ---------------
