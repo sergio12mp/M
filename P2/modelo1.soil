@@ -55,7 +55,7 @@ reset
 !insert (D3,CRA1) into TieneDispositivos
 
 
---!Vagon1.falla(CRA1);
+!Vagon1.falla(CRA1);
 --!Vagon2.falla(CRA1);
 --!Vagon3.falla(CRA1);
 --!Vagon4.falla(CRA1);

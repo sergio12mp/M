@@ -81,14 +81,16 @@ class CRA
         op := self.dispositivo.operario -> any(o |o.disponible);
         op.disponible := false;
         insert(op, vagon) into  Mantenimiento;
-        --vagon.siendoRevisado := true;
+                      --vagon.siendoRevisado := true;
       end;
 --      if self.dispositivo.operario -> select(o | o.disponible ) -> size() <=0 then
 --        vagon.cra.asignarOperario(vagon);
 --      end;
     end
-    post OperarioDisponible : self.dispositivo.operario@pre -> any(o |o.disponible).disponible = true implies
-                              vagon.operario = vagon.operario@pre -> append(self.dispositivo.operario -> any(o | o.disponible)) 
+      post : self.dispositivo.operario@pre-> select( o | o.disponible)->size() >= self.dispositivo.operario-> select( o | o.disponible)->size()
+
+-- post OperarioDisponible : self.dispositivo.operario@pre -> any(o |o.disponible).disponible = true implies
+--                          vagon.operario = vagon.operario@pre -> append(self.dispositivo.operario -> any(o | o.disponible)) 
 --    post OperarioNoDisponible : self.dispositivo.operario@pre -> select( o |  o.disponible) -> size() <= 0 implies 
 --                                vagon.cra.asignarOperario(vagon)
 end
