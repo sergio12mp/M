@@ -31,29 +31,35 @@ attributes
 
     comprobarEstado()
       begin
-        if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0 then
-          self.para();
-        else
-          self.sigue();
+        if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
+          if self.run=true then
+            self.para();
+          end;
+        end;
+        if self.vagon -> forAll(v | v.detectorActivado=false)  then
+          if self.run=false then
+            self.sigue();
+          end;
         end;
       end 
       --no ponemos pre y post debido a que ya estan en las operaciones
       --para y sigue de atraccion.
   statemachines
 
-  psm Atraccion
-
-    states
-      inicial: initial
-      enMarcha [self.run]
-      parada [not self.run]
-    
-    transitions
-      inicial -> enMarcha
-      enMarcha -> parada {para()}
-
-      parada -> enMarcha{sigue()}
-end
+    psm Atraccion
+  
+      states
+        inicial: initial
+        enMarcha [self.run]
+        parada [not self.run]
+      
+      transitions
+        inicial -> enMarcha
+        enMarcha -> parada {para()}
+  
+        parada -> enMarcha{sigue()}
+  
+  end
 end
 
 class Vagon
@@ -161,7 +167,7 @@ association TieneDispositivos between
 end
 
 association Mantenimiento between
-  Operario [0..*] role operario ordered --he tenido que cambiar la multiplicidad para poder poner 
+  Operario [0..1] role operario --ordered --he tenido que cambiar la multiplicidad para poder poner 
                                         --Vagon.operario como un ordered set y asi hacer el append
                                         --en la post de asignarOperario
   Vagon [0..1] role vagon 
