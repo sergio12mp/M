@@ -125,21 +125,7 @@ operations
   end
   post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
     
-  statemachines
-
-  psm Operario
-
-    states
-      inicial: initial
-      disponible [self.disponible]
-      noDisponible [not self.disponible]
-    
-    transitions
-      inicial       -> disponible
-      disponible    -> noDisponible{asignarOperario()}
-
-      noDisponible  -> disponible {arregla()}
-  end
+  
       
 end
 
@@ -169,6 +155,22 @@ operations
     end
     pre:  self.disponible = true
     post:  self.disponible = false
+
+    statemachines
+
+  psm Operario
+
+    states
+      inicial: initial
+      disponible [self.disponible]
+      noDisponible [not self.disponible]
+    
+    transitions
+      inicial       -> disponible
+      disponible    -> noDisponible{ocuparOperario()}
+
+      noDisponible  -> disponible {arregla()}
+  end
 end
 
 ------------- Asociaciones ---------------
