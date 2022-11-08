@@ -45,7 +45,8 @@ attributes
       --no ponemos pre y post debido a que ya estan en las operaciones
       --para y sigue de atraccion.
   statemachines
-
+  --Preguntar si hace falta que aparezca refleajada la operacion comprobarEstado,
+  --ya que no influye en el modelo, solo invoca dos funciones
     psm Atraccion
   
       states
