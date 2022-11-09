@@ -137,7 +137,7 @@ operations
         inicial -> ninguno
         ninguno -> alguno {sumaAvisoResuelto()}
         alguno -> alguno {sumaAvisoResuelto()}
-  
+    
   end
       
 end
@@ -146,9 +146,17 @@ class Operario
 attributes
   disponible : Boolean init = true
 operations
-  arregla()
+
+  liberarOperario()
     begin
       self.disponible := true;
+    end
+    pre estaLibre :  self.disponible = false
+    post :  self.disponible = true
+
+  arregla()
+    begin
+      --self.disponible := true;
       --self.vagon.detectorActivado := false;
       self.vagon.arreglarVagon();
       self.dispositivo.sumaAvisoResuelto();
@@ -156,17 +164,24 @@ operations
       delete(self.vagon,self.dispositivo.cra) from AvisaA;
       delete(self,self.vagon) from Mantenimiento;
       if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
-        self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ))
-      end
+        self.liberarOperario();
+        self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ));
+      else 
+        self.liberarOperario();
+      end;
+      
     end
-    -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
-    post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
+  -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
+  post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
+    
   ocuparOperario()
     begin
       self.disponible := false;
     end
     pre estaLibre:  self.disponible = true
     post:  self.disponible = false
+
+
 
     statemachines
 
@@ -180,8 +195,8 @@ operations
     transitions
       inicial       -> disponible
       disponible    -> noDisponible{ocuparOperario()}
-
-      noDisponible  -> disponible {arregla()}
+      noDisponible  -> noDisponible{ocuparOperario()}
+      noDisponible  -> disponible {liberarOperario()}
   end
 end
 
