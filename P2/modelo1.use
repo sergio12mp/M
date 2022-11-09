@@ -35,12 +35,12 @@ attributes
           if self.run=true then
             self.para();
           end;
-        end;
-        if self.vagon -> forAll(v | v.detectorActivado=false)  then
+        else if self.vagon -> forAll(v | v.detectorActivado=false)  then
           if self.run=false then
             self.sigue();
           end;
         end;
+        end
       end 
       --no ponemos pre y post debido a que ya estan en las operaciones
       --para y sigue de atraccion.
