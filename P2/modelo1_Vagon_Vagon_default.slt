@@ -9,6 +9,24 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
+    <node id="noFunciona" sizeCalculated="true" type="StateNode">
+        <name>noFunciona</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>357.03335797258507</x>
+            <y>91.76587621430662</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
+    <node id="funciona" sizeCalculated="true" type="StateNode">
+        <name>funciona</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>67.0872548404077</x>
+            <y>92.06784719061386</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
     <node height="14.0" id="inicial" sizeCalculated="false" type="PseudoStateNode" width="14.0">
         <name>inicial</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
@@ -33,24 +51,55 @@
         </node>
         <hidden>false</hidden>
     </node>
-    <node id="noFunciona" sizeCalculated="true" type="StateNode">
-        <name>noFunciona</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>357.03335797258507</x>
-            <y>91.76587621430662</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
+    <edge type="Transition">
+        <source>noFunciona</source>
+        <target>funciona</target>
+        <name>arreglarVagon()/</name>
+        <waypoints>
+            <edgeproperty id="transition::noFunciona::funciona::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::noFunciona::funciona::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
         <hidden>false</hidden>
-    </node>
-    <node id="funciona" sizeCalculated="true" type="StateNode">
-        <name>funciona</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>67.0872548404077</x>
-            <y>92.06784719061386</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
+        <Transitions>
+            <Transition>
+                <trigger>arreglarVagon()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="arreglarVagon()/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
+                    <name>arreglarVagon()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::noFunciona::funciona::::WayPoint::0</related0>
+                            <related1>transition::noFunciona::funciona::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
     <edge type="Transition">
         <source>inicial</source>
         <target>funciona</target>
@@ -101,55 +150,6 @@
                         <related length="2">
                             <related0>transition::inicial::funciona::::WayPoint::0</related0>
                             <related1>transition::inicial::funciona::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>noFunciona</source>
-        <target>funciona</target>
-        <name>arreglarVagon()/</name>
-        <waypoints>
-            <edgeproperty id="transition::noFunciona::funciona::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::noFunciona::funciona::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>arreglarVagon()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="arreglarVagon()/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
-                    <name>arreglarVagon()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::noFunciona::funciona::::WayPoint::0</related0>
-                            <related1>transition::noFunciona::funciona::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

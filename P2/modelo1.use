@@ -57,8 +57,10 @@ attributes
       transitions
         inicial -> enMarcha
         enMarcha -> parada {para()}
-  
+        enMarcha -> enMarcha{comprobarEstado()}
+
         parada -> enMarcha{sigue()}
+        parada -> parada{comprobarEstado()}
   
     end
 end
@@ -195,8 +197,10 @@ operations
     transitions
       inicial       -> disponible
       disponible    -> noDisponible{ocuparOperario()}
+      disponible    -> disponible{arregla()}
       noDisponible  -> noDisponible{ocuparOperario()}
       noDisponible  -> disponible {liberarOperario()}
+      noDisponible  -> noDisponible {arregla()}
   end
 end
 
