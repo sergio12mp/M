@@ -42,19 +42,17 @@ class Atraccion
 
   statemachines
     psm Atraccion
-    states
-      inicial: initial
-      enMarcha [self.run]
-      parada [not self.run]
-    
-    transitions
-      inicial -> enMarcha
-      enMarcha -> parada {para()}
-      enMarcha -> enMarcha{comprobarEstado()}
-      parada -> enMarcha{sigue()}
-      parada -> parada{comprobarEstado()}
-
-    end
+      states
+        inicial: initial
+        enMarcha [self.run]
+        parada [not self.run]
+      transitions
+        inicial -> enMarcha
+        enMarcha -> parada {para()}
+        enMarcha -> enMarcha{comprobarEstado()}
+        parada -> enMarcha{sigue()}
+        parada -> parada{comprobarEstado()}
+      end
 
 end
 
@@ -82,17 +80,15 @@ class Vagon
 
   statemachines
     psm Vagon
-  
-    states
-      inicial: initial
-      funciona [not self.detectorActivado]
-      noFunciona [self.detectorActivado]
-  
-    transitions
-      inicial -> funciona
-      funciona -> noFunciona {falla()}
-      noFunciona -> funciona{arreglarVagon()}
-    end
+      states
+        inicial: initial
+        funciona [not self.detectorActivado]
+        noFunciona [self.detectorActivado]
+      transitions
+        inicial -> funciona
+        funciona -> noFunciona {falla()}
+        noFunciona -> funciona{arreglarVagon()}
+      end
 end
 
 class CRA
@@ -104,25 +100,23 @@ class CRA
         op := self.dispositivo.operario -> any(o |o.disponible);
         op.ocuparOperario();
         insert(op, vagon) into  Mantenimiento;
-                      --vagon.siendoRevisado := true;
       end;
     end
       post : self.dispositivo.operario@pre-> select( o | o.disponible)->size() >= self.dispositivo.operario-> select( o | o.disponible)->size()
-  end
+end
 
 class Dispositvo
-attributes
-  nAvisosResueltos : Integer init = 0
-operations
-  sumaAvisoResuelto()
-  begin
-    self.nAvisosResueltos := self.nAvisosResueltos+1;
-  end
-  post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
+  attributes
+    nAvisosResueltos : Integer init = 0
+  operations
+    sumaAvisoResuelto()
+    begin
+      self.nAvisosResueltos := self.nAvisosResueltos+1;
+    end
+    post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
     
   statemachines
-   psm Dispositivo
-  
+    psm Dispositivo
       states
         inicial: initial
         ninguno [self.nAvisosResueltos = 0]
