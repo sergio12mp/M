@@ -63,8 +63,8 @@ reset
 !Federico.arregla();
 !ManyManitas.arregla();
 !Vagon5.falla(CRA1);
---!Pepe.arregla();
---!ManyManitas.arregla();
+!Pepe.arregla();
+!ManyManitas.arregla();
 
 --------------------------------
 check
