@@ -45,18 +45,18 @@
     <node id="parada" sizeCalculated="true" type="StateNode">
         <name>parada</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>357.8266522112431</x>
-            <y>67.98533116117613</y>
+            <x>358.8266522112431</x>
+            <y>87.98533116117613</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">
-        <source>parada</source>
+        <source>inicial</source>
         <target>enMarcha</target>
-        <name>sigue()/</name>
+        <name>/</name>
         <waypoints>
-            <edgeproperty id="transition::parada::enMarcha::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::inicial::enMarcha::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>0</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
                     <userOffsetX>0.0</userOffsetX>
@@ -66,7 +66,7 @@
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::parada::enMarcha::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::inicial::enMarcha::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
                     <userOffsetX>0.0</userOffsetX>
@@ -80,19 +80,68 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>sigue()</trigger>
+                <trigger/>
                 <guard/>
                 <post/>
-                <edgeproperty id="sigue()/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
-                    <name>sigue()/</name>
+                <edgeproperty id="/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
+                    <name>/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
                         <userOffsetX>0.0</userOffsetX>
                         <userOffsetY>0.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
-                            <related0>transition::parada::enMarcha::::WayPoint::0</related0>
-                            <related1>transition::parada::enMarcha::::WayPoint::1</related1>
+                            <related0>transition::inicial::enMarcha::::WayPoint::0</related0>
+                            <related1>transition::inicial::enMarcha::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>enMarcha</source>
+        <target>parada</target>
+        <name>para()/</name>
+        <waypoints>
+            <edgeproperty id="transition::enMarcha::parada::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::enMarcha::parada::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>para()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="para()/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
+                    <name>para()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::enMarcha::parada::::WayPoint::0</related0>
+                            <related1>transition::enMarcha::parada::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -341,60 +390,11 @@
         </Transitions>
     </edge>
     <edge type="Transition">
-        <source>enMarcha</source>
-        <target>parada</target>
-        <name>para()/</name>
-        <waypoints>
-            <edgeproperty id="transition::enMarcha::parada::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::enMarcha::parada::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>para()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="para()/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
-                    <name>para()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::enMarcha::parada::::WayPoint::0</related0>
-                            <related1>transition::enMarcha::parada::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>inicial</source>
+        <source>parada</source>
         <target>enMarcha</target>
-        <name>/</name>
+        <name>sigue()/</name>
         <waypoints>
-            <edgeproperty id="transition::inicial::enMarcha::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::parada::enMarcha::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>0</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
                     <userOffsetX>0.0</userOffsetX>
@@ -404,7 +404,7 @@
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::inicial::enMarcha::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::parada::enMarcha::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
                     <userOffsetX>0.0</userOffsetX>
@@ -418,19 +418,19 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger/>
+                <trigger>sigue()</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
-                    <name>/</name>
+                <edgeproperty id="sigue()/" sizeCalculated="true" type="TransitionLabel" userDefined="false" visible="true">
+                    <name>sigue()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
                         <userOffsetX>0.0</userOffsetX>
                         <userOffsetY>0.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
-                            <related0>transition::inicial::enMarcha::::WayPoint::0</related0>
-                            <related1>transition::inicial::enMarcha::::WayPoint::1</related1>
+                            <related0>transition::parada::enMarcha::::WayPoint::0</related0>
+                            <related1>transition::parada::enMarcha::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

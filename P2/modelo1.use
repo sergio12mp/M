@@ -50,8 +50,10 @@ class Atraccion
         inicial -> enMarcha
         enMarcha -> parada {para()}
         enMarcha -> enMarcha{comprobarEstado()}
+        enMarcha -> parada{comprobarEstado()}
         parada -> enMarcha{sigue()}
         parada -> parada{comprobarEstado()}
+        parada -> enMarcha{comprobarEstado()}
       end
 
 end
