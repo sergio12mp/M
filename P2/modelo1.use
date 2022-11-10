@@ -49,11 +49,11 @@ class Atraccion
       transitions
         inicial -> enMarcha
         enMarcha -> parada {para()}
-        enMarcha -> enMarcha{comprobarEstado()}
-        enMarcha -> parada{comprobarEstado()}
+        enMarcha -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
+        enMarcha -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
         parada -> enMarcha{sigue()}
-        parada -> parada{comprobarEstado()}
-        parada -> enMarcha{comprobarEstado()}
+        parada -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
+        parada -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
       end
 
 end
