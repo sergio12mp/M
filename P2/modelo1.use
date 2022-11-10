@@ -123,74 +123,59 @@ class Dispositvo
         inicial: initial
         ninguno [self.nAvisosResueltos = 0]
         alguno
-      
       transitions
         inicial -> ninguno
         ninguno -> alguno {sumaAvisoResuelto()}
         alguno -> alguno {sumaAvisoResuelto()}
-    
-  end
-      
+  end 
 end
 
 class Operario
-attributes
-  disponible : Boolean init = true
-operations
+  attributes
+    disponible : Boolean init = true
+  operations
+    liberarOperario()
+      begin
+        self.disponible := true;
+      end
+      pre estaLibre :  self.disponible = false
+      post :  self.disponible = true
+    arregla()
+      begin
+        self.vagon.arreglarVagon();
+        self.dispositivo.sumaAvisoResuelto();
+        self.vagon.atraccion.comprobarEstado();
+        delete(self.vagon,self.dispositivo.cra) from AvisaA;
+        delete(self,self.vagon) from Mantenimiento;
+        if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
+          self.liberarOperario();
+          self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ));
+        else 
+          self.liberarOperario();
+        end;
+      end
+      post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
+    ocuparOperario()
+      begin
+        self.disponible := false;
+      end
+      pre estaLibre : self.disponible = true
+      post : self.disponible = false
 
-  liberarOperario()
-    begin
-      self.disponible := true;
+  statemachines
+    psm Operario
+      states
+        inicial: initial
+        disponible [self.disponible]
+        noDisponible [not self.disponible]
+      transitions
+        inicial       -> disponible
+        disponible    -> noDisponible{ocuparOperario()}
+        disponible    -> disponible{arregla()}
+        noDisponible  -> noDisponible{ocuparOperario()}
+        noDisponible  -> disponible {liberarOperario()}
+        noDisponible  -> noDisponible {arregla()}
     end
-    pre estaLibre :  self.disponible = false
-    post :  self.disponible = true
-
-  arregla()
-    begin
-      --self.disponible := true;
-      --self.vagon.detectorActivado := false;
-      self.vagon.arreglarVagon();
-      self.dispositivo.sumaAvisoResuelto();
-      self.vagon.atraccion.comprobarEstado();
-      delete(self.vagon,self.dispositivo.cra) from AvisaA;
-      delete(self,self.vagon) from Mantenimiento;
-      if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
-        self.liberarOperario();
-        self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ));
-      else 
-        self.liberarOperario();
-      end;
-      
-    end
-  -- post estaArreglado : self.vagon.detectorActivado = false and self.disponible = true
-  post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
-    
-  ocuparOperario()
-    begin
-      self.disponible := false;
-    end
-    pre estaLibre:  self.disponible = true
-    post:  self.disponible = false
-
-
-
-    statemachines
-
-  psm Operario
-
-    states
-      inicial: initial
-      disponible [self.disponible]
-      noDisponible [not self.disponible]
-    
-    transitions
-      inicial       -> disponible
-      disponible    -> noDisponible{ocuparOperario()}
-      disponible    -> disponible{arregla()}
-      noDisponible  -> noDisponible{ocuparOperario()}
-      noDisponible  -> disponible {liberarOperario()}
-      noDisponible  -> noDisponible {arregla()}
-  end
 end
 
 ------------- Asociaciones ---------------
@@ -226,9 +211,7 @@ association TieneDispositivos between
 end
 
 association Mantenimiento between
-  Operario [0..1] role operario --ordered --he tenido que cambiar la multiplicidad para poder poner 
-                                        --Vagon.operario como un ordered set y asi hacer el append
-                                        --en la post de asignarOperario
+  Operario [0..1] role operario
   Vagon [0..1] role vagon 
 end
 
@@ -248,11 +231,10 @@ context Dispositvo
 inv ResueltosNoNegativos:
   self.nAvisosResueltos >= 0
 
+
 context CRA
 inv CRAUnica:
   CRA.allInstances() -> size() = 1
-
------------ Maquinas de Estado -------------
 
 
 
