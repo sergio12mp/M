@@ -171,10 +171,12 @@ class Operario
       transitions
         inicial       -> disponible
         disponible    -> noDisponible{ocuparOperario()}
-        disponible    -> disponible{arregla()}
-        noDisponible  -> noDisponible{ocuparOperario()}
+        --disponible    -> noDisponible{arregla()}
+        
+        --noDisponible  -> noDisponible{ocuparOperario()}
         noDisponible  -> disponible {liberarOperario()}
-        noDisponible  -> noDisponible {arregla()}
+        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
+        noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado) = false] arregla()}
     end
 end
 
