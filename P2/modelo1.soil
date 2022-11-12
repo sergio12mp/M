@@ -2,13 +2,13 @@ reset
 -- Clases--
 
 !new Ciudad('Malaga')
-!new Ciudad('Wisconsin')
+!new Ciudad('Madrid')
 
 !new ParqueAtracciones('Tivoli')
-!new ParqueAtracciones('Ibailand')
+!new ParqueAtracciones('Warner')
 
 !insert (Malaga, Tivoli) into SeLocalizaEn
-!insert (Wisconsin, Ibailand) into SeLocalizaEn
+!insert (Madrid, Warner) into SeLocalizaEn
 
 !new Atraccion('CaidaDeLaMuerte')
 !CaidaDeLaMuerte.calle:= 'Andalucia'
@@ -37,39 +37,36 @@ reset
 !insert (MalagaEye, Vagon5) into ComponeAtraccion
 !insert (MalagaEye, Vagon6) into ComponeAtraccion
 
-!new Operario('Federico')
-!new Operario('ManyManitas')
-!new Operario('Pepe')
+!new Operario('Antonio')
+!new Operario('Beatriz')
+!new Operario('Carlos')
 
-!new Dispositvo('D1')
-!new Dispositvo('D2')
-!new Dispositvo('D3')
+!new Dispositvo('Dispositivo1')
+!new Dispositvo('Dispositivo2')
+!new Dispositvo('Dispositivo3')
 
-!insert (Federico, D1) into AsignadoA
-!insert (ManyManitas, D2) into AsignadoA
-!insert (Pepe, D3) into AsignadoA
+!insert (Antonio, Dispositivo1) into AsignadoA
+!insert (Beatriz, Dispositivo2) into AsignadoA
+!insert (Carlos, Dispositivo3) into AsignadoA
 
 
-!insert (D1,CRA1) into TieneDispositivos
-!insert (D2,CRA1) into TieneDispositivos
-!insert (D3,CRA1) into TieneDispositivos
+!insert (Dispositivo1,CRA1) into TieneDispositivos
+!insert (Dispositivo2,CRA1) into TieneDispositivos
+!insert (Dispositivo3,CRA1) into TieneDispositivos
 
 
 !Vagon1.falla(CRA1);
 !Vagon2.falla(CRA1);
+!Antonio.arregla();
+!Carlos.arregla();
 !Vagon3.falla(CRA1);
 !Vagon4.falla(CRA1);
 !Vagon5.falla(CRA1);
 !Vagon6.falla(CRA1);
-!Federico.arregla();
-
-
-!Federico.arregla();
-!ManyManitas.arregla();
-!Pepe.arregla();
-!Federico.arregla();
-!ManyManitas.arregla();
-
+!Antonio.arregla();
+!Antonio.arregla();
+!Beatriz.arregla();
+!Carlos.arregla();
 
 --------------------------------
 check
