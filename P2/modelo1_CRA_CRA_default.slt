@@ -9,20 +9,11 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="ninguno" sizeCalculated="true" type="StateNode">
-        <name>ninguno</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>113.95065914248732</x>
-            <y>130.26453330023173</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node height="14.0" id="inicial" sizeCalculated="false" type="PseudoStateNode" width="14.0">
         <name>inicial</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>182.0691640627689</x>
-            <y>65.8068753237444</y>
+            <x>80.31678223581923</x>
+            <y>27.44391787843442</y>
         </strategy>
         <node id="inicial::StateName" sizeCalculated="true" type="StateName">
             <name>inicial</name>
@@ -42,21 +33,21 @@
         </node>
         <hidden>false</hidden>
     </node>
-    <node id="alguno" sizeCalculated="true" type="StateNode">
-        <name>alguno</name>
+    <node id="asigna" sizeCalculated="true" type="StateNode">
+        <name>asigna</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>332.48017679474356</x>
-            <y>139.4285913760238</y>
+            <x>41.7591738542223</x>
+            <y>98.0</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">
-        <source>alguno</source>
-        <target>alguno</target>
-        <name>sumaAvisoResuelto()/</name>
+        <source>asigna</source>
+        <target>asigna</target>
+        <name>asignarOperario(vagon : Vagon)/</name>
         <waypoints>
-            <edgeproperty id="transition::alguno::alguno::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::asigna::asigna::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>0</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
@@ -68,13 +59,13 @@
                     <deltaY>-0.3333</deltaY>
                     <maxDeltaY>66.66</maxDeltaY>
                     <corner>NORTH_EAST</corner>
-                    <relativeNodeId>alguno</relativeNodeId>
+                    <relativeNodeId>asigna</relativeNodeId>
                 </strategy>
                 <id>0</id>
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::alguno::alguno::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
+            <edgeproperty id="transition::asigna::asigna::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
@@ -86,13 +77,13 @@
                     <deltaY>-0.3333</deltaY>
                     <maxDeltaY>66.66</maxDeltaY>
                     <corner>NORTH_EAST</corner>
-                    <relativeNodeId>alguno</relativeNodeId>
+                    <relativeNodeId>asigna</relativeNodeId>
                 </strategy>
                 <id>1</id>
                 <specialid>3</specialid>
                 <hidden>true</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::alguno::alguno::::WayPoint::2" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
+            <edgeproperty id="transition::asigna::asigna::::WayPoint::2" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
                 <name>2</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
@@ -104,13 +95,13 @@
                     <deltaY>0.6666</deltaY>
                     <maxDeltaY>133.32</maxDeltaY>
                     <corner>NORTH_EAST</corner>
-                    <relativeNodeId>alguno</relativeNodeId>
+                    <relativeNodeId>asigna</relativeNodeId>
                 </strategy>
                 <id>2</id>
                 <specialid>4</specialid>
                 <hidden>true</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::alguno::alguno::::WayPoint::3" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
+            <edgeproperty id="transition::asigna::asigna::::WayPoint::3" sizeCalculated="true" type="WayPoint" userDefined="false" visible="false">
                 <name>3</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
@@ -122,13 +113,13 @@
                     <deltaY>0.6666</deltaY>
                     <maxDeltaY>133.32</maxDeltaY>
                     <corner>NORTH_EAST</corner>
-                    <relativeNodeId>alguno</relativeNodeId>
+                    <relativeNodeId>asigna</relativeNodeId>
                 </strategy>
                 <id>3</id>
                 <specialid>5</specialid>
                 <hidden>true</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::alguno::alguno::::WayPoint::4" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::asigna::asigna::::WayPoint::4" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>4</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
@@ -140,7 +131,7 @@
                     <deltaY>0.0</deltaY>
                     <maxDeltaY>0.0</maxDeltaY>
                     <corner>NORTH_EAST</corner>
-                    <relativeNodeId>alguno</relativeNodeId>
+                    <relativeNodeId>asigna</relativeNodeId>
                 </strategy>
                 <id>4</id>
                 <specialid>2</specialid>
@@ -151,68 +142,19 @@
         <reflexivePosition>NORTH_EAST</reflexivePosition>
         <Transitions>
             <Transition>
-                <trigger>sumaAvisoResuelto()</trigger>
+                <trigger>asignarOperario(vagon : Vagon)</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="sumaAvisoResuelto()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
-                    <name>sumaAvisoResuelto()/</name>
+                <edgeproperty id="asignarOperario(vagon : Vagon)/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
+                    <name>asignarOperario(vagon : Vagon)/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>79.0</userOffsetX>
-                        <userOffsetY>15.0</userOffsetY>
+                        <userOffsetX>71.0</userOffsetX>
+                        <userOffsetY>-63.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
-                            <related0>transition::alguno::alguno::::WayPoint::0</related0>
-                            <related1>transition::alguno::alguno::::WayPoint::4</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>ninguno</source>
-        <target>alguno</target>
-        <name>sumaAvisoResuelto()/</name>
-        <waypoints>
-            <edgeproperty id="transition::ninguno::alguno::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::ninguno::alguno::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>sumaAvisoResuelto()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="sumaAvisoResuelto()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
-                    <name>sumaAvisoResuelto()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>37.0</userOffsetX>
-                        <userOffsetY>20.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::ninguno::alguno::::WayPoint::0</related0>
-                            <related1>transition::ninguno::alguno::::WayPoint::1</related1>
+                            <related0>transition::asigna::asigna::::WayPoint::0</related0>
+                            <related1>transition::asigna::asigna::::WayPoint::4</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -222,28 +164,20 @@
     </edge>
     <edge type="Transition">
         <source>inicial</source>
-        <target>ninguno</target>
+        <target>asigna</target>
         <name>/</name>
         <waypoints>
-            <edgeproperty id="transition::inicial::ninguno::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+            <edgeproperty id="transition::inicial::asigna::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>-344.7747589391513</userOffsetX>
-                    <userOffsetY>-68.95699278325088</userOffsetY>
-                    <basisDeltaX>ABSOLUTE</basisDeltaX>
-                    <deltaX>0.0</deltaX>
-                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
-                    <basisDeltaY>ABSOLUTE</basisDeltaY>
-                    <deltaY>0.0</deltaY>
-                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
-                    <corner>NORTH_WEST</corner>
-                    <relativeNodeId>inicial</relativeNodeId>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
                 </strategy>
                 <id>0</id>
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::inicial::ninguno::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::inicial::asigna::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
                     <userOffsetX>0.0</userOffsetX>
@@ -268,8 +202,8 @@
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
-                            <related0>transition::inicial::ninguno::::WayPoint::0</related0>
-                            <related1>transition::inicial::ninguno::::WayPoint::1</related1>
+                            <related0>transition::inicial::asigna::::WayPoint::0</related0>
+                            <related1>transition::inicial::asigna::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

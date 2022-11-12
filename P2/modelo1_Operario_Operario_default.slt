@@ -9,20 +9,11 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="disponible" sizeCalculated="true" type="StateNode">
-        <name>disponible</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>417.73655893063255</x>
-            <y>32.65094221909544</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node id="noDisponible" sizeCalculated="true" type="StateNode">
         <name>noDisponible</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>435.7421229435698</x>
-            <y>289.6152944876527</y>
+            <x>369.0</x>
+            <y>82.0</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -30,8 +21,8 @@
     <node height="14.0" id="inicial" sizeCalculated="false" type="PseudoStateNode" width="14.0">
         <name>inicial</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>81.70386732080823</x>
-            <y>85.15516847685201</y>
+            <x>9.0</x>
+            <y>101.5</y>
         </strategy>
         <node id="inicial::StateName" sizeCalculated="true" type="StateName">
             <name>inicial</name>
@@ -51,16 +42,25 @@
         </node>
         <hidden>false</hidden>
     </node>
+    <node height="61.0" id="disponible" sizeCalculated="false" type="StateNode" width="113.0">
+        <name>disponible</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>56.0</x>
+            <y>79.0</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
     <edge type="Transition">
-        <source>noDisponible</source>
-        <target>disponible</target>
-        <name>[(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = 1)] liberarOperario()/</name>
+        <source>disponible</source>
+        <target>noDisponible</target>
+        <name>ocuparOperario()/</name>
         <waypoints>
-            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+            <edgeproperty id="transition::disponible::noDisponible::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>0</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>39.46201734344913</userOffsetX>
-                    <userOffsetY>-23.0</userOffsetY>
+                    <userOffsetX>102.49786148555955</userOffsetX>
+                    <userOffsetY>41.0</userOffsetY>
                     <basisDeltaX>ABSOLUTE</basisDeltaX>
                     <deltaX>0.0</deltaX>
                     <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -68,56 +68,7 @@
                     <deltaY>0.0</deltaY>
                     <maxDeltaY>1.7976931348623157E308</maxDeltaY>
                     <corner>NORTH_WEST</corner>
-                    <relativeNodeId>noDisponible</relativeNodeId>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>liberarOperario()</trigger>
-                <guard>(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = 1)</guard>
-                <post/>
-                <edgeproperty id="[(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = 1)] liberarOperario()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
-                    <name>[(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = 1)] liberarOperario()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>4.0</userOffsetX>
-                        <userOffsetY>-71.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::noDisponible::disponible::::WayPoint::0</related0>
-                            <related1>transition::noDisponible::disponible::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>disponible</source>
-        <target>noDisponible</target>
-        <name>ocuparOperario()/</name>
-        <waypoints>
-            <edgeproperty id="transition::disponible::noDisponible::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <relativeNodeId>disponible</relativeNodeId>
                 </strategy>
                 <id>0</id>
                 <specialid>1</specialid>
@@ -126,8 +77,8 @@
             <edgeproperty id="transition::disponible::noDisponible::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>-11.545877292602086</userOffsetX>
-                    <userOffsetY>-1.0</userOffsetY>
+                    <userOffsetX>-22.545877292602086</userOffsetX>
+                    <userOffsetY>42.0</userOffsetY>
                     <basisDeltaX>ABSOLUTE</basisDeltaX>
                     <deltaX>0.0</deltaX>
                     <maxDeltaX>1.7976931348623157E308</maxDeltaX>
@@ -151,8 +102,8 @@
                 <edgeproperty id="ocuparOperario()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
                     <name>ocuparOperario()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>-130.0</userOffsetX>
-                        <userOffsetY>-40.0</userOffsetY>
+                        <userOffsetX>-50.0</userOffsetX>
+                        <userOffsetY>-17.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
@@ -168,23 +119,39 @@
     <edge type="Transition">
         <source>noDisponible</source>
         <target>disponible</target>
-        <name>[(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)] arregla()/</name>
+        <name>[(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = Vagon.allInstances-&gt;size)] liberarOperario()/</name>
         <waypoints>
-            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>-29.537982656550867</userOffsetX>
+                    <userOffsetY>5.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>noDisponible</relativeNodeId>
                 </strategy>
                 <id>0</id>
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
                 <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>119.04641612006952</userOffsetX>
+                    <userOffsetY>18.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>disponible</relativeNodeId>
                 </strategy>
                 <id>1</id>
                 <specialid>2</specialid>
@@ -194,14 +161,14 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>arregla()</trigger>
-                <guard>(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)</guard>
+                <trigger>liberarOperario()</trigger>
+                <guard>(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = Vagon.allInstances-&gt;size)</guard>
                 <post/>
-                <edgeproperty id="[(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)] arregla()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
-                    <name>[(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)] arregla()/</name>
+                <edgeproperty id="[(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = Vagon.allInstances-&gt;size)] liberarOperario()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
+                    <name>[(Vagon.allInstances-&gt;select(v : Vagon | v.detectorActivado)-&gt;size = Vagon.allInstances-&gt;size)] liberarOperario()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>284.0</userOffsetX>
-                        <userOffsetY>-4.0</userOffsetY>
+                        <userOffsetX>52.0</userOffsetX>
+                        <userOffsetY>-33.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
@@ -256,6 +223,71 @@
                         <related length="2">
                             <related0>transition::inicial::disponible::::WayPoint::0</related0>
                             <related1>transition::inicial::disponible::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>noDisponible</source>
+        <target>disponible</target>
+        <name>[(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)] arregla()/</name>
+        <waypoints>
+            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>-15.323074710563844</userOffsetX>
+                    <userOffsetY>65.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>noDisponible</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::noDisponible::disponible::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>116.23596609032717</userOffsetX>
+                    <userOffsetY>63.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>disponible</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>arregla()</trigger>
+                <guard>(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)</guard>
+                <post/>
+                <edgeproperty id="[(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)] arregla()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
+                    <name>[(Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0))) = false)] arregla()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>60.0</userOffsetX>
+                        <userOffsetY>14.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::noDisponible::disponible::::WayPoint::0</related0>
+                            <related1>transition::noDisponible::disponible::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -369,8 +401,8 @@
                 <edgeproperty id="[Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0)))] arregla()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
                     <name>[Vagon.allInstances-&gt;exists(v : Vagon | (v.detectorActivado and (v.operario-&gt;size = 0)))] arregla()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>235.0</userOffsetX>
-                        <userOffsetY>95.0</userOffsetY>
+                        <userOffsetX>-38.0</userOffsetX>
+                        <userOffsetY>-72.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">

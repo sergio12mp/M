@@ -212,7 +212,7 @@ end
 
 association TieneDispositivos between
   Dispositvo[0..*] role dispositivo
-  CRA[0..1]role cra
+  CRA[1]role cra
 end
 
 association Mantenimiento between
