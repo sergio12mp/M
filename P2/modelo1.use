@@ -17,39 +17,24 @@ class Atraccion
     para()
       begin 
       if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
-        if self.run=true then
+        if self.run = true then
           self.run := false;
         end;
       end;
       end
       post parado : not self.run 
+
     sigue()
       begin
-
-      if self.vagon -> select(v | v.detectorActivado=true) -> size() = 0  then
-          if self.run=false then --acordarse que se puede quitar
+      if self.vagon -> select(v | v.detectorActivado = true) -> size() = 0  then
+          if self.run = false then --acordarse que se puede quitar
             self.run := true;
-          --  self.sigue(); ?????????????????
           end;
       end;
         self.run := true;
       end
       pre estaParada : self.run = false
       post running : self.run
--- comprobarEstado()
---   begin
---     if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
---       if self.run=true then
---         self.para();
---       end;
---     else if self.vagon -> forAll(v | v.detectorActivado=false)  then
---       if self.run=false then
---         self.sigue();
---       end;
---     end;
---   end
---
---end
 
   statemachines
     psm Atraccion
@@ -60,12 +45,7 @@ class Atraccion
       transitions
         inicial -> enMarcha
         enMarcha -> parada {[(self.run = true) and (self.vagon -> select(v | v.detectorActivado = true) -> size() > 0) ]para()}
-        --enMarcha -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
-        --enMarcha -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
-        parada -> enMarcha{[(self.run = false) and (self.vagon -> select(v | v.detectorActivado=true)-> size() = 0) ]sigue()}
-        --parada -> parada{[(self.run = false) and (self.vagon -> select(v | v.detectorActivado = true) -> size() > 0)]sigue()}
-        --parada -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
-        --parada -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
+        parada -> enMarcha{[(self.run = false) and (self.vagon -> select(v | v.detectorActivado = true) -> size() = 0) ]sigue()}
       end
 
 end
@@ -79,25 +59,20 @@ class Vagon
       begin
         self.detectorActivado := true;
         insert(self,cra) into AvisaA; 
-        --self.atraccion.comprobarEstado();  
-        
-        if self.atraccion.run=true then
+        if self.atraccion.run = true then
           self.atraccion.para();
         end;
-        
-        
-        
         self.cra.asignarOperario(self); 
       end
       pre: self.detectorActivado = false
       post: self.detectorActivado = true
+
     arreglarVagon()
       begin
         self.detectorActivado := false;
       end
         pre: self.detectorActivado = true
         post: self.detectorActivado = false
-
 
   statemachines
     psm Vagon
@@ -123,7 +98,7 @@ class CRA
         insert(op, vagon) into  Mantenimiento;
       end;
     end
-      post : self.dispositivo.operario@pre-> select( o | o.disponible)->size() >= self.dispositivo.operario-> select( o | o.disponible)->size()
+      post : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() >= self.dispositivo.operario -> select( o | o.disponible) -> size()
 end
 
 class Dispositvo
@@ -159,28 +134,23 @@ class Operario
       end
       pre estaLibre :  self.disponible = false
       post :  self.disponible = true
+
     arregla()
       begin
         self.vagon.arreglarVagon();
         self.dispositivo.sumaAvisoResuelto();
-        --self.vagon.atraccion.comprobarEstado();
-        
-        if self.vagon.atraccion.vagon -> select (v | v.detectorActivado=true) -> size() = 0  then
+        if self.vagon.atraccion.vagon -> select (v | v.detectorActivado = true) -> size() = 0  then
           self.vagon.atraccion.sigue();
-        
         end;
-        
         delete(self.vagon,self.dispositivo.cra) from AvisaA;
         delete(self,self.vagon) from Mantenimiento;
-
         self.liberarOperario();
-        if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
-          
-          self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ));
+        if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario -> size() = 0)) then
+          self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario -> size() = 0 ));
         end;
-
       end
       post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
+
     ocuparOperario()
       begin
         self.disponible := false;
@@ -197,12 +167,9 @@ class Operario
       transitions
         inicial       -> disponible
         disponible    -> noDisponible{ocuparOperario()}
-        --disponible    -> disponible{arregla()}
-        noDisponible  -> disponible {[Vagon.allInstances -> select(v | v.detectorActivado) ->size() =1] liberarOperario()}
-        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
-        noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0) = false] arregla()}
-        
-        
+        noDisponible  -> disponible {[Vagon.allInstances -> select(v | v.detectorActivado) -> size() = 1] liberarOperario()}
+        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario -> size() = 0 ))] arregla()}
+        noDisponible  -> disponible {[(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario -> size() = 0) = false  )] arregla()}
     end
 end
 
@@ -263,10 +230,3 @@ inv ResueltosNoNegativos:
 context CRA
 inv CRAUnica:
   CRA.allInstances() -> size() = 1
-
-
-
-
-
-
-
