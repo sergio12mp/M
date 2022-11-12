@@ -177,7 +177,7 @@ class Operario
       transitions
         inicial       -> disponible
         disponible    -> noDisponible{ocuparOperario()}
-        noDisponible  -> disponible {[Vagon.allInstances -> select(v | v.detectorActivado) ->size() = Vagon.allInstances -> size()] liberarOperario()}
+        disponible -> disponible{liberarOperario()}
         noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
         noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0) = false] arregla()}
     end
