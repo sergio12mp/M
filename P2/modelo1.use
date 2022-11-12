@@ -98,7 +98,16 @@ class CRA
         insert(op, vagon) into  Mantenimiento;
       end;
     end
-      post : self.dispositivo.operario@pre -> select( o | o.disponible) -> size() >= self.dispositivo.operario -> select( o | o.disponible) -> size()
+      post : self.dispositivo.operario@pre-> select( o | o.disponible)->size() >= self.dispositivo.operario-> select( o | o.disponible)->size()
+      statemachines
+        psm CRA
+          states
+            inicial : initial
+            asigna 
+          transitions
+            inicial -> asigna
+            asigna -> asigna {asignarOperario()}
+          end
 end
 
 class Dispositvo
@@ -164,12 +173,13 @@ class Operario
         inicial: initial
         disponible [self.disponible]
         noDisponible [not self.disponible]
+
       transitions
         inicial       -> disponible
         disponible    -> noDisponible{ocuparOperario()}
-        noDisponible  -> disponible {[Vagon.allInstances -> select(v | v.detectorActivado) -> size() = 1] liberarOperario()}
-        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario -> size() = 0 ))] arregla()}
-        noDisponible  -> disponible {[(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario -> size() = 0) = false  )] arregla()}
+        noDisponible  -> disponible {[Vagon.allInstances -> select(v | v.detectorActivado) ->size() = Vagon.allInstances -> size()] liberarOperario()}
+        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
+        noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0) = false] arregla()}
     end
 end
 
