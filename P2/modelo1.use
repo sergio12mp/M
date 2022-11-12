@@ -16,38 +16,29 @@ class Atraccion
   operations
     para()
       begin 
-      if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
-        if self.run=true then
-          self.run := false;
-        end;
-      end;
+        self.run := false;
       end
       post parado : not self.run 
     sigue()
       begin
-    if self.vagon -> forAll(v | v.detectorActivado=false)  then
-        if self.run=false then
-          self.sigue();
-        end;
-    end;
         self.run := true;
       end
       pre estaParada : self.run = false
       post running : self.run
--- comprobarEstado()
---   begin
---     if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
---       if self.run=true then
---         self.para();
---       end;
---     else if self.vagon -> forAll(v | v.detectorActivado=false)  then
---       if self.run=false then
---         self.sigue();
---       end;
---     end;
---   end
---
---end
+    comprobarEstado()
+      begin
+        if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
+          if self.run=true then
+            self.para();
+          end;
+        else if self.vagon -> forAll(v | v.detectorActivado=false)  then
+          if self.run=false then
+            self.sigue();
+          end;
+        end;
+      end
+
+  end
 
   statemachines
     psm Atraccion
@@ -57,12 +48,12 @@ class Atraccion
         parada [not self.run]
       transitions
         inicial -> enMarcha
-        enMarcha -> parada {[(self.run = true) and () ]para()}
-        --enMarcha -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
-        --enMarcha -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
-        parada -> enMarcha{[self.run = false]sigue()}
-        --parada -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
-        --parada -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
+        enMarcha -> parada {para()}
+        enMarcha -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
+        enMarcha -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
+        parada -> enMarcha{sigue()}
+        parada -> parada{[self.vagon -> select(v | v.detectorActivado = true) -> size() > 0] comprobarEstado()}
+        parada -> enMarcha{[self.vagon -> forAll(v | v.detectorActivado=false)] comprobarEstado()}
       end
 
 end
@@ -76,8 +67,7 @@ class Vagon
       begin
         self.detectorActivado := true;
         insert(self,cra) into AvisaA; 
-        --self.atraccion.comprobarEstado();  
-        self.atraccion.para();
+        self.atraccion.comprobarEstado();  
         self.cra.asignarOperario(self); 
       end
       pre: self.detectorActivado = false
@@ -154,8 +144,7 @@ class Operario
       begin
         self.vagon.arreglarVagon();
         self.dispositivo.sumaAvisoResuelto();
-        --self.vagon.atraccion.comprobarEstado();
-        self.vagon.atraccion.sigue();
+        self.vagon.atraccion.comprobarEstado();
         delete(self.vagon,self.dispositivo.cra) from AvisaA;
         delete(self,self.vagon) from Mantenimiento;
         if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
@@ -182,12 +171,10 @@ class Operario
       transitions
         inicial       -> disponible
         disponible    -> noDisponible{ocuparOperario()}
-        --disponible    -> noDisponible{arregla()}
-        
-        --noDisponible  -> noDisponible{ocuparOperario()}
+        disponible    -> disponible{arregla()}
+        noDisponible  -> noDisponible{ocuparOperario()}
         noDisponible  -> disponible {liberarOperario()}
-        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
-        noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado) = false] arregla()}
+        noDisponible  -> noDisponible {arregla()}
     end
 end
 
@@ -248,10 +235,3 @@ inv ResueltosNoNegativos:
 context CRA
 inv CRAUnica:
   CRA.allInstances() -> size() = 1
-
-
-
-
-
-
-
