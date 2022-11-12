@@ -167,16 +167,15 @@ class Operario
           self.vagon.atraccion.sigue();
         end;
         
-        
-        
         delete(self.vagon,self.dispositivo.cra) from AvisaA;
         delete(self,self.vagon) from Mantenimiento;
+
+        self.liberarOperario();
         if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario->size()=0)) then
-          self.liberarOperario();
+          
           self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario->size()=0 ));
-        else 
-          self.liberarOperario();
         end;
+
       end
       post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
     ocuparOperario()
@@ -196,7 +195,7 @@ class Operario
         inicial       -> disponible
         disponible    -> noDisponible{ocuparOperario()}
         --disponible    -> disponible{arregla()}
-        noDisponible  -> disponible {liberarOperario()}
+        noDisponible  -> disponible {[Vagon.allInstances -> select(v | v.detectorActivado) ->size() =1]liberarOperario()}
         noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
         noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0) = false] arregla()}
         
