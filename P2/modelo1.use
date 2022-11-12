@@ -196,7 +196,7 @@ association TieneAtracciones between
 end
 
 association AvisaA between
-  Vagon[0..*] role vagonEnvio
+  Vagon[0..*] role vagon
   CRA[0..1] role cra
 end
 
