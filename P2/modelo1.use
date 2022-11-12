@@ -197,8 +197,8 @@ class Operario
         disponible    -> noDisponible{ocuparOperario()}
         --disponible    -> disponible{arregla()}
         noDisponible  -> disponible {liberarOperario()}
-        noDisponible  -> noDisponible{ocuparOperario()}
-        noDisponible  -> noDisponible {arregla()}
+        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
+        noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0) = false] arregla()}
         
         
     end
