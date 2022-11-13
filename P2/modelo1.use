@@ -207,7 +207,7 @@ end
 
 association SeLocalizaEn between
   Ciudad[1] role ciudad
-  ParqueAtracciones[1] role parqueatracciones
+  ParqueAtracciones[1..*] role parqueatracciones
 end
 
 association TieneDispositivos between
