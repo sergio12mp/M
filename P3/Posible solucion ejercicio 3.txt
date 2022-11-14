@@ -1,0 +1,63 @@
+Para simplificar la implementación, considerar que cada bandeja sólo puede almacenar
+una pieza, pero el número de bandejas no está limitado.
+
+La clase Bandeja contiene información sobre la pieza contenida y el estado de la bandeja (VACÍA,
+OCUPADA o LLENA). El estado de una bandeja puede cambiar a medida que se realizan operaciones con
+la bandeja. Estas operaciones se realizan llamando a los métodos correspondientes de la clase
+Bandeja.
+
+
+La clase Bandeja contiene una referencia al objeto IEstadoBandeja que representa el estado de la
+bandeja. El estado de una bandeja puede cambiar a medida que se realizan operaciones con la
+bandeja. Estas operaciones se realizan llamando a los métodos correspondientes de la clase Bandeja.
+La clase IEstadoBandeja representa el estado de una bandeja. Las operaciones que se pueden
+realizar sobre una bandeja (insertar, retirar y limpiar) varían en función del estado de la bandeja.
+Por ejemplo, si una bandeja está VACÍA, la operación de insertar una pieza es válida, mientras que la
+operación de retirar una pieza no lo es.
+
+La clase Bandeja contiene una referencia al objeto IEstadoBandeja que representa el estado de la
+bandeja. El estado de una bandeja puede cambiar a medida que se realizan operaciones con la
+bandeja. Estas operaciones se realizan llamando a los métodos correspondientes de la clase Bandeja.
+La clase IEstadoBandeja representa el estado de una bandeja. Las operaciones que se pueden
+realizar sobre una bandeja (insertar, retirar y limpiar) varían en función del estado de la bandeja.
+Por ejemplo, si una bandeja está VACÍA, la operación de insertar una pieza es válida, mientras que la
+operación de retirar una pieza no lo es.
+
+ */
+public class Bandeja {
+
+    private Pieza contenido;
+    private IEstadoBandeja estado;
+
+    public Bandeja() {
+        estado = new EstadoVacia();
+    }
+
+    public void insertar(Pieza p) {
+        estado.insertar(p, this);
+    }
+
+    public void retirar() {
+        estado.retirar(this);
+    }
+
+    public void limpiar() {
+        estado.limpiar(this);
+    }
+
+    public void setEstado(IEstadoBandeja e) {
+        estado = e;
+    }
+
+    public void setContenido(Pieza p) {
+        contenido = p;
+    }
+
+    public Pieza getContenido() {
+        return contenido;
+    }
+
+    public IEstadoBandeja getEstado() {
+        return estado;
+    }
+}
