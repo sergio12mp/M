@@ -21,7 +21,7 @@ public class Profesional {
     }
 
     public Enumeration<Acceso> getAcceso(){
-        return java.util.Collections.enumeration(listaAccesos);
+        return java.util.Collections.enumeration(listaAccesos); //comentar que hemos usado esto porque evita la modificación
     }
 
 }
