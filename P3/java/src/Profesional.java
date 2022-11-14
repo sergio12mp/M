@@ -3,9 +3,6 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class Profesional {
-<<<<<<< HEAD
-    
-=======
 
     private List<Acceso> listaAccesos;
 
@@ -27,6 +24,5 @@ public class Profesional {
         return java.util.Collections.enumeration(listaAccesos);
     }
 
->>>>>>> 666b9af9c455d0725e0b0552dcd5587b22eb3be1
 }
 

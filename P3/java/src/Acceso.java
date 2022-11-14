@@ -6,6 +6,9 @@ public class Acceso {
     TipoAcceso tipo;
 
     public Acceso(Date fecha,TipoAcceso  tipo){
+        assert(fecha!=null);
+        assert(tipo!=null);
+
         this.fecha = fecha;
         this.tipo = tipo;
     }
