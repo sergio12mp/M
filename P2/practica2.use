@@ -1,0 +1,242 @@
+model ObjectToClassModel
+
+enum TipoDeAtraccion {MONTANARUSA, NORIA}
+
+class Ciudad
+end
+
+class ParqueAtracciones
+end
+
+class Atraccion
+  attributes
+    calle : String
+    tipo : TipoDeAtraccion
+    run : Boolean init = true
+  operations
+    para()
+      begin 
+      if self.vagon -> select(v | v.detectorActivado = true) -> size() > 0    then
+        if self.run = true then
+          self.run := false;
+        end;
+      end;
+      end
+      post parado : not self.run 
+
+    sigue()
+      begin
+      if self.vagon -> select(v | v.detectorActivado = true) -> size() = 0  then
+          if self.run = false then --acordarse que se puede quitar
+            self.run := true;
+          end;
+      end;
+        self.run := true;
+      end
+      pre estaParada : self.run = false
+      post running : self.run
+
+  statemachines
+    psm Atraccion
+      states
+        inicial: initial
+        enMarcha [self.run]
+        parada [not self.run]
+      transitions
+        inicial -> enMarcha
+        enMarcha -> parada {[(self.run = true) and (self.vagon -> select(v | v.detectorActivado = true) -> size() > 0) ]para()}
+        parada -> enMarcha{[(self.run = false) and (self.vagon -> select(v | v.detectorActivado = true) -> size() = 0) ]sigue()}
+      end
+
+end
+
+class Vagon
+  attributes
+    detectorActivado : Boolean init = false
+
+  operations
+    falla(cra: CRA)
+      begin
+        self.detectorActivado := true;
+        insert(self,cra) into AvisaA; 
+        if self.atraccion.run = true then
+          self.atraccion.para();
+        end;
+        self.cra.asignarOperario(self); 
+      end
+      pre: self.detectorActivado = false
+      post: self.detectorActivado = true
+
+    arreglarVagon()
+      begin
+        self.detectorActivado := false;
+      end
+        pre: self.detectorActivado = true
+        post: self.detectorActivado = false
+
+  statemachines
+    psm Vagon
+      states
+        inicial: initial
+        funciona [not self.detectorActivado]
+        noFunciona [self.detectorActivado]
+      transitions
+        inicial -> funciona
+        funciona -> noFunciona {falla()}
+        noFunciona -> funciona{arreglarVagon()}
+      end
+end
+
+class CRA
+  operations
+    asignarOperario(vagon: Vagon)
+    begin
+      if self.dispositivo.operario -> any(o |o.disponible).disponible = true then
+        declare op: Operario;
+        op := self.dispositivo.operario -> any(o |o.disponible);
+        op.ocuparOperario();
+        insert(op, vagon) into  Mantenimiento;
+      end;
+    end
+      post : self.dispositivo.operario@pre-> select( o | o.disponible)->size() >= self.dispositivo.operario-> select( o | o.disponible)->size()
+      statemachines
+        psm CRA
+          states
+            inicial : initial
+            asigna 
+          transitions
+            inicial -> asigna
+            asigna -> asigna {asignarOperario()}
+          end
+end
+
+class Dispositvo
+  attributes
+    nAvisosResueltos : Integer init = 0
+  operations
+    sumaAvisoResuelto()
+    begin
+      self.nAvisosResueltos := self.nAvisosResueltos+1;
+    end
+    post: self.nAvisosResueltos = self.nAvisosResueltos@pre + 1
+    
+  statemachines
+    psm Dispositivo
+      states
+        inicial: initial
+        ninguno [self.nAvisosResueltos = 0]
+        alguno
+      transitions
+        inicial -> ninguno
+        ninguno -> alguno {sumaAvisoResuelto()}
+        alguno -> alguno {sumaAvisoResuelto()}
+  end 
+end
+
+class Operario
+  attributes
+    disponible : Boolean init = true
+  operations
+    liberarOperario()
+      begin
+        self.disponible := true;
+      end
+      pre estaLibre :  self.disponible = false
+      post :  self.disponible = true
+
+    arregla()
+      begin
+        self.vagon.arreglarVagon();
+        self.dispositivo.sumaAvisoResuelto();
+        if self.vagon.atraccion.vagon -> select (v | v.detectorActivado = true) -> size() = 0  then
+          self.vagon.atraccion.sigue();
+        end;
+        delete(self.vagon,self.dispositivo.cra) from AvisaA;
+        delete(self,self.vagon) from Mantenimiento;
+        self.liberarOperario();
+        if(Vagon.allInstances -> exists(v | v.detectorActivado = true and v.operario -> size() = 0)) then
+          self.dispositivo.cra.asignarOperario(Vagon.allInstances -> any(v | v.detectorActivado = true and v.operario -> size() = 0 ));
+        end;
+      end
+      post estaArreglado :   self.dispositivo.nAvisosResueltos = self.dispositivo.nAvisosResueltos@pre + 1
+
+    ocuparOperario()
+      begin
+        self.disponible := false;
+      end
+      pre estaLibre : self.disponible = true
+      post : self.disponible = false
+
+  statemachines
+    psm Operario
+      states
+        inicial: initial
+        disponible [self.disponible]
+        noDisponible [not self.disponible]
+
+      transitions
+        inicial       -> disponible
+        disponible    -> noDisponible{ocuparOperario()}
+        disponible -> disponible{liberarOperario()}
+        noDisponible  -> noDisponible { [(Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0 ))] arregla()}
+        noDisponible  -> disponible {[Vagon.allInstances -> exists(v | v.detectorActivado and v.operario->size()=0) = false] arregla()}
+    end
+end
+
+------------- Asociaciones ---------------
+
+association AsignadoA between
+  Operario[1] role operario
+  Dispositvo[1] role dispositivo
+end
+
+association TieneAtracciones between
+  ParqueAtracciones [1] role parqueAtracciones
+  Atraccion [0..*] role atraccion
+end
+
+association AvisaA between
+  Vagon[0..*] role vagon
+  CRA[0..1] role cra
+end
+
+composition ComponeAtraccion between
+  Atraccion[1] role atraccion
+  Vagon[1..*] role vagon
+end
+
+association SeLocalizaEn between
+  Ciudad[1] role ciudad
+  ParqueAtracciones[1..*] role parqueatracciones
+end
+
+association TieneDispositivos between
+  Dispositvo[0..*] role dispositivo
+  CRA[1]role cra
+end
+
+association Mantenimiento between
+  Operario [0..1] role operario
+  Vagon [0..1] role vagon 
+end
+
+--------- Restricciones ---------------
+
+constraints
+
+context Atraccion
+inv EnMarchaImplicaSinFallos:
+  self.run = true implies self.vagon -> forAll(detectorActivado = false)
+
+inv ParadaImplicaFallo:
+  self.run = false implies self.vagon -> select(v | v.detectorActivado = true) -> size() > 0
+
+
+context Dispositvo
+inv ResueltosNoNegativos:
+  self.nAvisosResueltos >= 0
+
+
+context CRA
+inv CRAUnica:
+  CRA.allInstances() -> size() = 1

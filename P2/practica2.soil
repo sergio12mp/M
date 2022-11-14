@@ -1,0 +1,72 @@
+reset
+-- Clases--
+
+!new Ciudad('Malaga')
+!new Ciudad('Madrid')
+
+!new ParqueAtracciones('Tivoli')
+!new ParqueAtracciones('Warner')
+
+!insert (Malaga, Tivoli) into SeLocalizaEn
+!insert (Madrid, Warner) into SeLocalizaEn
+
+!new Atraccion('CaidaDeLaMuerte')
+!CaidaDeLaMuerte.calle:= 'Andalucia'
+!CaidaDeLaMuerte.tipo:= #MONTANARUSA
+
+!new Atraccion('MalagaEye')
+!MalagaEye.calle:= 'Extremadura'
+!MalagaEye.tipo:= #NORIA
+
+!insert(Tivoli, CaidaDeLaMuerte) into TieneAtracciones
+!insert(Tivoli, MalagaEye) into TieneAtracciones
+
+!new CRA('CRA1')
+
+!new Vagon('Vagon1')
+!new Vagon('Vagon2')
+!new Vagon('Vagon3')
+!new Vagon('Vagon4')
+!new Vagon('Vagon5')
+!new Vagon('Vagon6')
+
+!insert (CaidaDeLaMuerte, Vagon1) into ComponeAtraccion
+!insert (CaidaDeLaMuerte, Vagon2) into ComponeAtraccion
+!insert (CaidaDeLaMuerte, Vagon3) into ComponeAtraccion
+!insert (MalagaEye, Vagon4) into ComponeAtraccion
+!insert (MalagaEye, Vagon5) into ComponeAtraccion
+!insert (MalagaEye, Vagon6) into ComponeAtraccion
+
+!new Operario('Antonio')
+!new Operario('Beatriz')
+!new Operario('Carlos')
+
+!new Dispositvo('Dispositivo1')
+!new Dispositvo('Dispositivo2')
+!new Dispositvo('Dispositivo3')
+
+!insert (Antonio, Dispositivo1) into AsignadoA
+!insert (Beatriz, Dispositivo2) into AsignadoA
+!insert (Carlos, Dispositivo3) into AsignadoA
+
+
+!insert (Dispositivo1,CRA1) into TieneDispositivos
+!insert (Dispositivo2,CRA1) into TieneDispositivos
+!insert (Dispositivo3,CRA1) into TieneDispositivos
+
+
+!Vagon1.falla(CRA1);
+!Vagon2.falla(CRA1);
+!Antonio.arregla();
+!Carlos.arregla();
+!Vagon3.falla(CRA1);
+!Vagon4.falla(CRA1);
+!Vagon5.falla(CRA1);
+!Vagon6.falla(CRA1);
+!Antonio.arregla();
+!Antonio.arregla();
+!Beatriz.arregla();
+!Carlos.arregla();
+
+--------------------------------
+check
