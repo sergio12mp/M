@@ -1,0 +1,118 @@
+a) Las clases descritas no pueden ser implementadas directamente en Java porque no se pueden crear dos
+atributos con el mismo nombre.
+
+b) Una solución posible a este problema podría ser la creación de una clase abstracta llamada Trabajador,
+que contenga un atributo llamado salario, así como los métodos abstractos nomina() e incrementar(). Esta
+clase sería entonces la superclase de las clases Activo y Pensionista, que implementarían los métodos
+abstractos de la clase Trabajador de forma específica para cada una de ellas. La clase MedioPensionista
+extendería entonces a las clases Activo y Pensionista, y tendría un atributo llamado salarioActivo, que
+representaría el salario del trabajador como activo, y otro atributo llamado salarioPensionista, que
+representaría el salario del trabajador como pensionista. La clase MedioPensionista implementaría el
+método nomina() de la clase Trabajador de forma específica, sumando el salarioActivo y el salarioPensionista
+para calcular la nómina del trabajador.
+
+c) La implementación de la solución propuesta en Java podría ser la siguiente:
+
+public abstract class Trabajador {
+
+private String nombre;
+private String numSeguridadSocial;
+private double salario;
+
+public Trabajador(String nombre, String numSeguridadSocial, double salario) {
+    this.nombre = nombre;
+    this.numSeguridadSocial = numSeguridadSocial;
+    this.salario = salario;
+}
+
+public String getNombre() {
+    return nombre;
+}
+
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
+
+public String getNumSeguridadSocial() {
+    return numSeguridadSocial;
+}
+
+public void setNumSeguridadSocial(String numSeguridadSocial) {
+    this.numSeguridadSocial = numSeguridadSocial;
+}
+
+public double getSalario() {
+    return salario;
+}
+
+public void setSalario(double salario) {
+    this.salario = salario;
+}
+
+public abstract double nomina();
+
+public abstract void incrementar();
+}
+
+public class Activo extends Trabajador {
+
+public Activo(String nombre, String numSeguridadSocial, double salario) {
+    super(nombre, numSeguridadSocial, salario);
+}
+
+@Override
+public double nomina() {
+    return getSalario();
+}
+
+@Override
+public void incrementar() {
+    setSalario(getSalario() * 1.1);
+}
+}
+
+public class Pensionista extends Trabajador {
+
+public Pensionista(String nombre, String numSeguridadSocial, double salario) {
+    super(nombre, numSeguridadSocial, salario);
+}
+
+@Override
+public double nomina() {
+    return getSalario();
+}
+
+@Override
+public void incrementar() {
+    setSalario(getSalario() * 1.03);
+}
+}
+
+public class MedioPensionista extends Activo {
+
+private double salarioPensionista;
+
+public MedioPensionista(String nombre, String numSeguridadSocial, double salario, double salarioPensionista) {
+    super(nombre, numSeguridadSocial, salario);
+    this.salarioPensionista = salarioPensionista;
+}
+
+public double getSalarioPensionista() {
+    return salarioPensionista;
+}
+
+public void setSalarioPensionista(double salarioPensionista) {
+    this.salarioPensionista = salarioPensionista;
+}
+
+@Override
+public double nomina() {
+    return getSalario() + getSalarioPensionista();
+}
+
+@Override
+public void incrementar() {
+    setSalario(getSalario() * 1.1);
+    setSalarioPensionista(getSalarioPensionista() * 1.03);
+}
+}
