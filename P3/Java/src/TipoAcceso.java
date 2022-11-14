@@ -1,1 +1,1 @@
-public enum TipoAcceso{CONSULTA, MODIFICACION, CREACION, ARCHIVO;}
+public enum TipoAcceso{consulta, modificacion, creacion, archivo;}
