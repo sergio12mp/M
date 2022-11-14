@@ -1,7 +1,5 @@
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Acceso {
     private Date fecha;
