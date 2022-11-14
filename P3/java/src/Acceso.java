@@ -1,5 +1,4 @@
 import java.util.Date;
-import java.util.Enumeration;
 
 public class Acceso {
     private Date fecha;
