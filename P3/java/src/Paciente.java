@@ -1,9 +1,25 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente {
 
+    private List<Diagnostico> listaExpedientes;
+    private Expediente expedienteAbierto;
+
+
     Paciente(){
-        List<Object> listaExpedientes = new List<Object>();
+        listaExpedientes = new ArrayList<Diagnostico>();
+    }
+
+    void addExpediente(Diagnostico diagnostico){
+        assert diagnostico != null;
+
+        listaExpedientes.add(diagnostico);
+    }
+    void removeExpediente(Diagnostico diagnostico){
+        assert diagnostico != null;
+
+        listaExpedientes.remove(diagnostico);
     }
 
     public List<Expediente> getExpedientes(){
