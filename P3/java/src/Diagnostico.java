@@ -17,7 +17,7 @@ public class Diagnostico {
 
     void remove() {
         expediente.setDiagnostico(null);
-        paciente.rmExpediente(this);
+        paciente.removeExpediente(this);
         setPaciente(null);
         setExpediente(null);
         assert expediente == null;
@@ -43,43 +43,6 @@ public class Diagnostico {
     }
 }
 
-public class Expediente {
-    private List<Acceso> listaAccesos;
-    private Diagnostico diagnostico;
 
-    public Expediente() {
-        listaAccesos = new ArrayList<Acceso>();
-        diagnostico = new Diagnostico(this, new Paciente());
-    }
-
-    public Expediente(Paciente p) {
-        assert p != null;
-        listaAccesos = new ArrayList<Acceso>();
-        diagnostico = new Diagnostico(this, p);
-    }
-
-    void addAcceso(Acceso a) {
-        assert a != null;
-        listaAccesos.add(a);
-    }
-
-    void rmAcceso(Acceso a) {
-        assert a != null;
-        listaAccesos.remove(a);
-    }
-
-    public Enumeration<Acceso> getAcceso() {
-        return java.util.Collections.enumeration(listaAccesos);
-    }
-
-    public Diagnostico getDiagnostico() {
-        return diagnostico;
-    }
-
-    public void setDiagnostico(Diagnostico diagnostico) {
-        assert diagnostico != null;
-        this.diagnostico = diagnostico;
-    }
-}
 
 
