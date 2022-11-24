@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 public class Paciente {
@@ -16,23 +17,30 @@ public class Paciente {
 
         listaExpedientes.add(diagnostico);
     }
+    
     void removeExpediente(Diagnostico diagnostico){
         assert diagnostico != null;
 
         listaExpedientes.remove(diagnostico);
     }
 
-    public List<Expediente> getExpedientes(){
-        //Devuelve todos los expedientes que ha tenido un paciente
-
-        return null;
-    }
+    public Enumeration<Diagnostico> getExpediente(){
+        return java.util.Collections.enumeration(listaExpedientes);
+        }
+        
 
     public Expediente getExpedienteAbierto(){
-        //Si tiene un expediente abierto, lo devuelve
-
-        return null;
+        return expedienteAbierto;
     }
+
+    void setExpedienteAbierto(Expediente expedienteAbierto) {
+        this.expedienteAbierto = expedienteAbierto;
+        }
+    
+    public void cerrarExpedienteAbierto() {
+        this.expedienteAbierto = null;
+        }
+        
 
 
 }

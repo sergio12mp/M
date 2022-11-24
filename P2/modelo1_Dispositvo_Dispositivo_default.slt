@@ -12,8 +12,17 @@
     <node id="ninguno" sizeCalculated="true" type="StateNode">
         <name>ninguno</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>113.95065914248732</x>
-            <y>130.26453330023173</y>
+            <x>138.95065914248732</x>
+            <y>139.26453330023173</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
+    <node id="alguno" sizeCalculated="true" type="StateNode">
+        <name>alguno</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>369.48017679474356</x>
+            <y>147.4285913760238</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -40,15 +49,6 @@
             </strategy>
             <hidden>false</hidden>
         </node>
-        <hidden>false</hidden>
-    </node>
-    <node id="alguno" sizeCalculated="true" type="StateNode">
-        <name>alguno</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>332.48017679474356</x>
-            <y>139.4285913760238</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">

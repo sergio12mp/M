@@ -9,11 +9,11 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="parada" sizeCalculated="true" type="StateNode">
-        <name>parada</name>
+    <node id="enMarcha" sizeCalculated="true" type="StateNode">
+        <name>enMarcha</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>174.0</x>
-            <y>139.0</y>
+            <x>196.0</x>
+            <y>44.0</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -42,64 +42,15 @@
         </node>
         <hidden>false</hidden>
     </node>
-    <node id="enMarcha" sizeCalculated="true" type="StateNode">
-        <name>enMarcha</name>
+    <node id="parada" sizeCalculated="true" type="StateNode">
+        <name>parada</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>172.0</x>
-            <y>0.0</y>
+            <x>293.0</x>
+            <y>244.0</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
-    <edge type="Transition">
-        <source>parada</source>
-        <target>enMarcha</target>
-        <name>[((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))] sigue()/</name>
-        <waypoints>
-            <edgeproperty id="transition::parada::enMarcha::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::parada::enMarcha::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>sigue()</trigger>
-                <guard>((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))</guard>
-                <post/>
-                <edgeproperty id="[((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))] sigue()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
-                    <name>[((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))] sigue()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>104.0</userOffsetX>
-                        <userOffsetY>18.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::parada::enMarcha::::WayPoint::0</related0>
-                            <related1>transition::parada::enMarcha::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
     <edge type="Transition">
         <source>enMarcha</source>
         <target>parada</target>
@@ -191,6 +142,55 @@
                         <related length="2">
                             <related0>transition::inicial::enMarcha::::WayPoint::0</related0>
                             <related1>transition::inicial::enMarcha::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>parada</source>
+        <target>enMarcha</target>
+        <name>[((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))] sigue()/</name>
+        <waypoints>
+            <edgeproperty id="transition::parada::enMarcha::::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::parada::enMarcha::::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>sigue()</trigger>
+                <guard>((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))</guard>
+                <post/>
+                <edgeproperty id="[((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))] sigue()/" sizeCalculated="true" type="TransitionLabel" userDefined="true" visible="true">
+                    <name>[((self.run = false) and (self.vagon-&gt;select(v : Vagon | (v.detectorActivado = true))-&gt;size = 0))] sigue()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>104.0</userOffsetX>
+                        <userOffsetY>18.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::parada::enMarcha::::WayPoint::0</related0>
+                            <related1>transition::parada::enMarcha::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

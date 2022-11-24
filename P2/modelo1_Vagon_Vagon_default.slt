@@ -18,6 +18,15 @@
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
+    <node id="noFunciona" sizeCalculated="true" type="StateNode">
+        <name>noFunciona</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>393.03335797258507</x>
+            <y>79.76587621430662</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
     <node height="14.0" id="inicial" sizeCalculated="false" type="PseudoStateNode" width="14.0">
         <name>inicial</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
@@ -40,15 +49,6 @@
             </strategy>
             <hidden>false</hidden>
         </node>
-        <hidden>false</hidden>
-    </node>
-    <node id="noFunciona" sizeCalculated="true" type="StateNode">
-        <name>noFunciona</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>357.03335797258507</x>
-            <y>91.76587621430662</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">
