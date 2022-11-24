@@ -1,4 +1,6 @@
 import java.util.Date;
+import java.util.Enumeration;
+
 
 public class Acceso {
     private Date fecha;
@@ -16,8 +18,22 @@ public class Acceso {
         setTipoAcceso(tipo);
         setProfesional(pro);
         setExpediente(exp);
+        pro.addAcceso(this);
+        exp.addAcceso(this);
     }
 
+    private boolean noDups(Profesional p, Expediente e) {
+        Enumeration<Acceso> enumA = p.getAcceso();
+        boolean dupFound = false;
+        while(!dupFound && enumA.hasMoreElements()){
+            Acceso a = enumA.nextElement();
+            if(a.getExpediente() == e){
+                dupFound=true;
+            }
+            }
+        return !dupFound;
+    }
+        
     //GETTERS
     public Date getDate(){
         return fecha;
@@ -34,7 +50,7 @@ public class Acceso {
     public Profesional getProfesional(){
         return pro;
     }
-    
+
     //SETTERS
     public void setDate(Date nuevaFecha){
         assert(nuevaFecha!=null);
