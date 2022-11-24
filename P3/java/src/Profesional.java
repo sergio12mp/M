@@ -5,6 +5,7 @@ import java.util.List;
 public class Profesional {
 
     private List<Acceso> listaAccesos;
+    public enum TipoAcceso{consulta,modificacion,creacion,archivo};
 
     public Profesional(){
         listaAccesos = new ArrayList<Acceso>();   
@@ -21,7 +22,7 @@ public class Profesional {
     }
 
     public Enumeration<Acceso> getAcceso(){
-        return java.util.Collections.enumeration(listaAccesos); //comentar que hemos usado esto porque evita la modificación
+        return java.util.Collections.enumeration(listaAccesos); 
     }
 
 }
