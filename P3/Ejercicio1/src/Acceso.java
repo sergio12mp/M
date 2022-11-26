@@ -5,19 +5,19 @@ import java.util.Enumeration;
 public class Acceso {
     private Date fecha;
     TipoAcceso tipo;
-    private Profesional pro;
-    private Expediente exp;
+    private Profesional profesional;
+    private Expediente expediente;
 
-    public Acceso(Date fecha,TipoAcceso  tipo, Profesional pro, Expediente exp){
+    public Acceso(Date fecha,TipoAcceso  tipo, Profesional profesional, Expediente expediente){
        /* Para tener mas facilidad a la hora de encontrar errores en el codigo o modificar restricciones
        comprobaremos que los valores no sean null en los setters
         */
         setDate(fecha);
         setTipoAcceso(tipo);
-        setProfesional(pro);
-        setExpediente(exp);
-        pro.addAcceso(this);
-        exp.addAcceso(this);
+        setProfesional(profesional);
+        setExpediente(expediente);
+        profesional.addAcceso(this);
+        expediente.addAcceso(this);
     }
 
     private boolean noDups(Profesional p, Expediente e) {
@@ -42,11 +42,11 @@ public class Acceso {
     }
 
     public Expediente getExpediente() {
-        return exp;
+        return expediente;
     }
 
     public Profesional getProfesional(){
-        return pro;
+        return profesional;
     }
 
     //SETTERS
@@ -60,14 +60,14 @@ public class Acceso {
         tipo = nuevoTipo;
     }
 
-    public void setProfesional(Profesional pro) {
-        assert pro!=null;
-        this.pro = pro;
+    public void setProfesional(Profesional profesional) {
+        assert profesional!=null;
+        this.profesional = profesional;
         }
     
-    public void setExpediente(Expediente exp) {
-        assert exp!=null;
-        this.exp = exp;
+    public void setExpediente(Expediente expediente) {
+        assert expediente!=null;
+        this.expediente = expediente;
      }
             
 }
