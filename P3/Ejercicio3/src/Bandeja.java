@@ -7,15 +7,15 @@ public class Bandeja {
     private int capacidad;
     Queue<Pieza> piezas;
 
-    public Bandeja(int cap) {
-        assert cap > 0;
+    public Bandeja(int capacidad) {
+        assert capacidad > 0;
         estado = new Empty(this);
-        setCapacidad(cap);
+        setCapacidad(capacidad);
         setPiezas(new LinkedList<>());
     }
 
-    public void put(Pieza p) {
-        estado.put(p);
+    public void put(Pieza pieza) {
+        estado.put(pieza);
     }
 
     public Pieza get() {

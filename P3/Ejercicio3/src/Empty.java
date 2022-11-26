@@ -4,23 +4,23 @@ public class Empty extends Estado {
     }
 
     @Override
-    public void put(Pieza p) {
-        assert p != null;
+    public void put(Pieza pieza) {
+        assert pieza != null;
         if (bandeja.getCapacidad() > 1) {
             bandeja.setEstado(new Normal(bandeja));
         } else {
             bandeja.setEstado(new Full(bandeja));
         }
-        bandeja.piezas.add(p);
-        p.setBandeja(bandeja);
+        bandeja.piezas.add(pieza);
+        pieza.setBandeja(bandeja);
     }
 
     @Override
     public Pieza get() {
         assert size() > 0;
-        Pieza p = bandeja.piezas.poll();
-        p.setBandeja(null);
-        return p;
+        Pieza pieza = bandeja.piezas.poll();
+        pieza.setBandeja(null);
+        return pieza;
     }
 
     @Override
