@@ -6,8 +6,9 @@ public class Diagnostico {
     private Paciente paciente;
 
     public Diagnostico(Expediente e, Paciente p) {
-        assert e != null;
-        assert p != null;
+        /* Para tener mas facilidad a la hora de encontrar errores en el codigo o modificar restricciones
+       comprobaremos que los valores no sean null en los setters
+        */
         setExpediente(e);
         setPaciente(p);
         p.addExpediente(this);
