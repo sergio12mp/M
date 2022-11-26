@@ -11,14 +11,14 @@ public class Profesional {
         listaAccesos = new ArrayList<Acceso>();   
     }
 
-    void addAcceso(Acceso a){
-        assert a!=null;
-        listaAccesos.add(a);
+    void addAcceso(Acceso acceso){
+        assert acceso!=null;
+        listaAccesos.add(acceso);
     }
 
-    void removeAcceso(Acceso a){
-        assert a!=null;
-        listaAccesos.remove(a);
+    void removeAcceso(Acceso acceso){
+        assert acceso!=null;
+        listaAccesos.remove(acceso);
     }
 
     public Enumeration<Acceso> getAcceso(){

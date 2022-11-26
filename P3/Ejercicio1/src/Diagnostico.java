@@ -5,15 +5,15 @@ public class Diagnostico {
     private Expediente expediente;
     private Paciente paciente;
 
-    public Diagnostico(Expediente e, Paciente p) {
+    public Diagnostico(Expediente expediente, Paciente profesional) {
         /* Para tener mas facilidad a la hora de encontrar errores en el codigo o modificar restricciones
        comprobaremos que los valores no sean null en los setters
         */
-        setExpediente(e);
-        setPaciente(p);
-        p.addExpediente(this);
-        e.setDiagnostico(this);
-        p.setExpedienteAbierto(e);
+        setExpediente(expediente);
+        setPaciente(profesional);
+        profesional.addExpediente(this);
+        expediente.setDiagnostico(this);
+        profesional.setExpedienteAbierto(expediente);
     }
 
     void remove() {
