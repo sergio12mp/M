@@ -19,19 +19,7 @@ public class Acceso {
         profesional.addAcceso(this);
         expediente.addAcceso(this);
     }
-
-    private boolean noDups(Profesional p, Expediente e) {
-        Enumeration<Acceso> enumA = p.getAcceso();
-        boolean dupFound = false;
-        while(!dupFound && enumA.hasMoreElements()){
-            Acceso a = enumA.nextElement();
-            if(a.getExpediente() == e){
-                dupFound=true;
-            }
-            }
-        return !dupFound;
-    }
-        
+    
     //GETTERS
     public Date getDate(){
         return fecha;
