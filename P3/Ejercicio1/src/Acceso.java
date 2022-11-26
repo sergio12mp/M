@@ -9,11 +9,8 @@ public class Acceso {
     private Expediente exp;
 
     public Acceso(Date fecha,TipoAcceso  tipo, Profesional pro, Expediente exp){
-       /* Por optimización es mejor no comprobarlo
-        assert(fecha!=null);
-        assert(tipo!=null);
-        assert(exp!=null);
-        assert(pro!=null);
+       /* Para tener mas facilidad a la hora de encontrar errores en el codigo o modificar restricciones
+       comprobaremos que los valores no sean null en los setters
         */
         setDate(fecha);
         setTipoAcceso(tipo);
