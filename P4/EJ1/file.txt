@@ -1,0 +1,24 @@
+1. Los interfaces Selectivos
+El lenguaje Eiffel dispone de un mecanismo de exportación selectiva mediante el cual una clase puede indicar, para
+cada una de sus características (p.ej. operaciones), qué otras clases pueden acceder a ellas.
+class X
+feature -- Características públicas
+rutina1 is
+do ... end;
+feature {A, B} --Características que pueden invocar objetos de clases A y B
+rutina2(y: REAL) is
+do ... end;
+feature (A, C} -- Características que pueden invocar objetos de las clases A y C
+rutina3(i: INTEGER) : BOOLEAN is
+do ... end;
+feature {} -- Características visibles sólo para la propia clase X y sus derivadas
+rutina4 : INTEGER is
+do ... end;
+end
+Esto permite que la clase X presente una interfaz protegida, tres interfaces distintas a cada uno de sus clientes A, B
+y C y una interfaz pública para el resto de las clases del sistema. Por el contrario, otros lenguajes como Java no
+disponen de mecanismos de exportación selectiva tan precisos, lo que puede causar problemas en ocasiones.
+a) Describir los mecanismos de exportación selectiva en Java y compararlo con el de Eiffel.
+b) Definir un patrón en Java para conseguir que una clase exporte sus funciones entre sus clientes, de manera
+realmente selectiva, tal y como se consigue en Eiffel. Utilizando el patrón, proporcionar una implementación para la
+clase X descrita. Discutir las ventajas e inconvenientes de la solución propuesta.
