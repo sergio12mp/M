@@ -1,0 +1,24 @@
+model ObjectToClassModel
+
+class Estado 
+end
+
+class Rojo < Estado 
+end
+
+class Verde < Estado 
+end
+
+class Dispositivo
+    attributes
+        atributos:String
+    operations
+        operaciones()
+        begin
+        end;
+end
+------------- Asociaciones ---------------
+association estadoDipositivo between
+    Dispositivo[1] role dispositivo
+    Estado[1] role estado
+end
